@@ -1,0 +1,197 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"..\SRC\MAIN.C"
+	.assume ADL=1
+	SEGMENT CODE
+;    1	#include <tice.h>
+;    2	#include <graphx.h>
+;    3	#include <stdint.h>
+;    4	#include <stdlib.h>
+;    5	
+;    6	#include "gfx/hej_gfx.h"
+;    7	
+;    8	void main(void) {
+_main:
+;    9	
+;   10	    gfx_Begin();
+	CALL	_gfx_Begin
+;   11	    
+;   12	    gfx_SetPalette(hej_gfx_pal, sizeof_hej_gfx_pal, 0);
+	LD	BC,0
+	PUSH	BC
+	LD	BC,4
+	PUSH	BC
+	LD	BC,_hej_gfx_pal
+	PUSH	BC
+	CALL	_gfx_SetPalette
+	POP	BC
+	POP	BC
+	POP	BC
+;   13	
+;   14	    gfx_FillScreen(0);
+	LD	BC,0
+	PUSH	BC
+	CALL	_gfx_FillScreen
+	POP	BC
+;   15	
+;   16	    /* Draw a bunch of different styled sprites on the screen */
+;   17	    gfx_Sprite(hej, 0, 0);
+	LD	BC,0
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_hej_data
+	PUSH	BC
+	CALL	_gfx_Sprite
+	POP	BC
+	POP	BC
+	POP	BC
+;   18	    gfx_Sprite_NoClip(hej, 32, 32);
+	LD	BC,32
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_hej_data
+	PUSH	BC
+	CALL	_gfx_Sprite_NoClip
+	POP	BC
+	POP	BC
+	POP	BC
+;   19	    gfx_TransparentSprite(hej, 64, 64);
+	LD	BC,64
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_hej_data
+	PUSH	BC
+	CALL	_gfx_TransparentSprite
+	POP	BC
+	POP	BC
+	POP	BC
+;   20	    gfx_TransparentSprite_NoClip(hej, 96, 96);
+	LD	BC,96
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_hej_data
+	PUSH	BC
+	CALL	_gfx_TransparentSprite_NoClip
+	POP	BC
+	POP	BC
+	POP	BC
+;   21	    gfx_ScaledSprite_NoClip(hej, 128, 128, 2, 2);
+	LD	BC,2
+	PUSH	BC
+	PUSH	BC
+	LD	BC,128
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_hej_data
+	PUSH	BC
+	CALL	_gfx_ScaledSprite_NoClip
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   22	    gfx_ScaledTransparentSprite_NoClip(hej, 128, 0, 3, 3);
+	LD	BC,3
+	PUSH	BC
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	LD	BC,128
+	PUSH	BC
+	LD	BC,_hej_data
+	PUSH	BC
+	CALL	_gfx_ScaledTransparentSprite_NoClip
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   23	
+;   24	    gfx_SetTextXY(120,20);
+	LD	BC,20
+	PUSH	BC
+	LD	BC,120
+	PUSH	BC
+	CALL	_gfx_SetTextXY
+	POP	BC
+	POP	BC
+;   25	    gfx_SetTextFGColor(0);
+	LD	BC,0
+	PUSH	BC
+	CALL	_gfx_SetTextFGColor
+	POP	BC
+;   26	    gfx_SetTextTransparentColor(255);
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_SetTextTransparentColor
+	POP	BC
+;   27	    gfx_PrintString("Schema");
+	LD	BC,L__0
+	PUSH	BC
+	CALL	_gfx_PrintString
+	POP	BC
+;   28	
+;   29	    while(os_GetCSC() != 9);
+L_1:
+	CALL	_os_GetCSC
+	UEXT	HL
+	LD	L,A
+	OR	A,A
+	LD	BC,9
+	SBC	HL,BC
+	JR	NZ,L_1
+;   30	
+;   31	    gfx_End();
+	CALL	_gfx_End
+	RET	
+
+
+;**************************** _main ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_End                            IMPORT  -----   function
+;_os_GetCSC                          IMPORT  -----   function
+;_gfx_PrintString                    IMPORT  -----   function
+;_gfx_SetTextTransparentColor        IMPORT  -----   function
+;_gfx_SetTextFGColor                 IMPORT  -----   function
+;_gfx_SetTextXY                      IMPORT  -----   function
+;_gfx_ScaledTransparentSprite_NoClip      IMPORT  -----   function
+;_gfx_ScaledSprite_NoClip            IMPORT  -----   function
+;_gfx_TransparentSprite_NoClip       IMPORT  -----   function
+;_gfx_TransparentSprite              IMPORT  -----   function
+;_gfx_Sprite_NoClip                  IMPORT  -----   function
+;_hej_data                           IMPORT    258   variable
+;_gfx_Sprite                         IMPORT  -----   function
+;_gfx_FillScreen                     IMPORT  -----   function
+;_hej_gfx_pal                        IMPORT      4   variable
+;_gfx_SetPalette                     IMPORT  -----   function
+;_gfx_Begin                          IMPORT  -----   function
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+	SEGMENT STRSECT
+L__0:
+	DB	"Schema"
+	DB	0
+	XREF _hej_gfx_pal:ROM
+	XREF _hej_data:ROM
+	XREF _gfx_ScaledTransparentSprite_NoClip:ROM
+	XREF _gfx_ScaledSprite_NoClip:ROM
+	XREF _gfx_TransparentSprite_NoClip:ROM
+	XREF _gfx_TransparentSprite:ROM
+	XREF _gfx_Sprite_NoClip:ROM
+	XREF _gfx_Sprite:ROM
+	XREF _gfx_SetTextTransparentColor:ROM
+	XREF _gfx_SetTextFGColor:ROM
+	XREF _gfx_SetTextXY:ROM
+	XREF _gfx_PrintString:ROM
+	XREF _gfx_FillScreen:ROM
+	XREF _gfx_SetPalette:ROM
+	XREF _gfx_End:ROM
+	XREF _gfx_Begin:ROM
+	XREF _os_GetCSC:ROM
+	XDEF _main
+	END

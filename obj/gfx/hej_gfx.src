@@ -1,0 +1,16 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"..\..\SRC\GFX\HEJ_GFX.C"
+	.assume ADL=1
+	SEGMENT DATA
+_hej_gfx_pal:
+	DW	65535
+	DW	0
+	XDEF _hej_gfx_pal
+;    1	// convpng v6.8
+;    2	#include <stdint.h>
+;    3	#include "hej_gfx.h"
+;    4	
+;    5	uint16_t hej_gfx_pal[2] = {
+	END
