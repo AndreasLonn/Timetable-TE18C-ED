@@ -1,1 +1,2 @@
 # Timetable-TE18C-ED
+You can compile it yourself or use the SCHEMA.8xp included to install on your TI-84 Plus CE. Use the official software [TI-Connect CE](https://education.ti.com/en/products/computer-software/ti-connect-ce-sw) to send it to your calculator.
