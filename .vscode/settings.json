@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "hej_gfx.h": "c"
+        "hej_gfx.h": "c",
+        "graphx.h": "c",
+        "tice.h": "c"
     }
 }
