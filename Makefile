@@ -1,4 +1,4 @@
-NAME        ?= SCHEMA
+NAME        ?= TIMETBL
 COMPRESSED  ?= YES
 DESCRIPTION ?= "Kolla på schemat - i grafräknaren!"
 
