@@ -16,7 +16,7 @@ int8_t colorKemi = 63;
 int8_t colorLunch = 224;
 int8_t colorMatte = 15;
 int8_t colorMentorstid = 223;
-int8_t colorResurstid = 104;//120;
+int8_t colorResurstid = 104;
 int8_t colorSvenska = 231;
 int8_t colorTeknik = 5;
 
