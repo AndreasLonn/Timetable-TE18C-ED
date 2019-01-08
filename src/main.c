@@ -25,7 +25,7 @@ int8_t textColorLight = 255;
 int8_t textColorTransparent = 254;
 
 bool showName = true;
-bool weekEven = true;
+bool weekB = true;
 
 void drawLesson();
 void drawLessons();
@@ -48,7 +48,7 @@ void main(void) {
             drawLessons();
             gfx_SwapDraw();
         } if(key == 2 || key == 3 || key == 48){
-            weekEven = !weekEven;
+            weekB = !weekB;
             drawLessons();
             gfx_SwapDraw();
         }
@@ -77,7 +77,7 @@ void drawLessons(void){
     drawLesson(1 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", colorEngelska, textColorDark, "12:55", "14:15");
 
     //Onsdag
-    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", weekEven ? "H341" : "F206", colorMatte, textColorDark, "09:25", "10:35");
+    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", weekB ? "H341" : "F206", colorMatte, textColorDark, "09:25", "10:35");
     drawLesson(2 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "10:40", "11:30");
     drawLesson(2 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:30", "12:15");
 
@@ -85,7 +85,7 @@ void drawLessons(void){
     drawLesson(3 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Matte", "F206", colorMatte, textColorDark, "08:00", "09:00");
     drawLesson(3 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Idrott", "", colorIdrott, textColorDark, "09:40", "11:10");
     drawLesson(3 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:35", "12:20");
-    if(weekEven){
+    if(weekB){
         drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", colorKemi, textColorDark, "12:20", "13:40");
         drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", colorTeknik, textColorLight, "14:00", "15:30");
     } else {
@@ -101,7 +101,7 @@ void drawLessons(void){
     drawLesson(4 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", colorEngelska, textColorDark, "13:40", "14:40");
     drawLesson(4 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Matte", "H341", colorMatte, textColorDark, "14:50", "15:50");
 
-    gfx_PrintStringXY(weekEven ? "Jamn Vecka" : "Udda Vecka", LCD_WIDTH / 2 - 32, LCD_HEIGHT - lessonHeight / 2);
+    gfx_PrintStringXY(weekB ? "Vecka B" : "Vecka A", LCD_WIDTH / 2 - 32, LCD_HEIGHT - lessonHeight / 2);
 }
 
 void drawLesson(int16_t x, int16_t y, char *name, char *location, int8_t lessonColor, int8_t textColor, char *timeFrom, char *timeTo){
