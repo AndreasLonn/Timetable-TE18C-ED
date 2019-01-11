@@ -3,7 +3,9 @@ Timetable-TE18C-ED is a timetable for the calculator TI-84 Plus CE. You can cust
 
 ## Installing
 
-Installing can be done through the official software [TI-Connect CE](https://education.ti.com/en/products/computer-software/ti-connect-ce-sw). You can use the SCHEMA.8xp included, or make one yourself.
+Installing can be done through the official software [TI-Connect CE](https://education.ti.com/en/products/computer-software/ti-connect-ce-sw). You can use the TIMETABLEC.8xp included, or make one yourself.
+1.hej
+2.hej
 
 ## Credits
 
