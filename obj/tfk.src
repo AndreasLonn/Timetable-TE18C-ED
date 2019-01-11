@@ -1,0 +1,2016 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"..\SRC\TFK.C"
+	.assume ADL=1
+	SEGMENT DATA
+_lessonWidth:
+	DB	64
+_lessonHeight:
+	DB	32
+_lessonHeightMargin:
+	DB	2
+_lessonBorderColor:
+	DB	0
+_colorEngelska:
+	DB	230
+_colorFysik:
+	DB	47
+_colorHistoria:
+	DB	30
+_colorIdrott:
+	DB	253
+_colorKemi:
+	DB	63
+_colorLunch:
+	DB	224
+_colorMatte:
+	DB	15
+_colorMentorstid:
+	DB	223
+_colorResurstid:
+	DB	104
+_colorSvenska:
+	DB	231
+_colorTeknik:
+	DB	5
+_textColorDark:
+	DB	0
+_textColorLight:
+	DB	255
+_textColorTransparent:
+	DB	254
+_showName:
+	DB	1
+_weekB:
+	DB	1
+;    1	#include <tice.h>
+;    2	#include <graphx.h>
+;    3	#include <stdint.h>
+;    4	#include <stdlib.h>
+;    5	
+;    6	int8_t lessonWidth = 64;
+;    7	int8_t lessonHeight = 32;
+;    8	int8_t lessonHeightMargin = 16 / 6;
+;    9	int8_t lessonBorderColor = 0;
+;   10	
+;   11	int8_t colorEngelska = 230;
+;   12	int8_t colorFysik = 47;
+;   13	int8_t colorHistoria = 30;
+;   14	int8_t colorIdrott = 253;
+;   15	int8_t colorKemi = 63;
+;   16	int8_t colorLunch = 224;
+;   17	int8_t colorMatte = 15;
+;   18	int8_t colorMentorstid = 223;
+;   19	int8_t colorResurstid = 104;
+;   20	int8_t colorSvenska = 231;
+;   21	int8_t colorTeknik = 5;
+;   22	
+;   23	int8_t textColorDark = 0;
+;   24	int8_t textColorLight = 255;
+;   25	int8_t textColorTransparent = 254;
+;   26	
+;   27	bool showName = true;
+;   28	bool weekB = true;
+	SEGMENT CODE
+;   29	
+;   30	void drawLesson();
+;   31	void drawLessons();
+;   32	
+;   33	void main(void) {
+_main:
+	LD	HL,-7
+	CALL	__frameset
+;   34	    int8_t x = 50;
+;   35	
+;   36	    sk_key_t key;
+;   37	
+;   38	    gfx_Begin();
+	CALL	_gfx_Begin
+;   39	    gfx_SetDrawBuffer();
+	LD	BC,1
+	PUSH	BC
+	CALL	_gfx_SetDraw
+	POP	BC
+;   40	
+;   41	    drawLessons();
+	CALL	_drawLessons
+;   42	
+;   43	    gfx_SwapDraw();
+	CALL	_gfx_SwapDraw
+;   44	
+;   45	    while((key = os_GetCSC()) != 9){
+	JR	L_16
+L_17:
+;   46	        if(key == 1 || key == 4 || key == 15 || key == 54){
+	LD	A,(IX+-1)
+	CP	A,1
+	JR	Z,L_7
+	LD	A,(IX+-1)
+	CP	A,4
+	JR	Z,L_7
+	LD	A,(IX+-1)
+	CP	A,15
+	JR	Z,L_7
+	LD	A,(IX+-1)
+	CP	A,54
+	JR	NZ,L_15
+L_7:
+;   47	            showName = !showName;
+	LD	A,(_showName)
+	OR	A,A
+	JR	NZ,L_4
+	LD	BC,1
+	LD	(IX+-7),BC
+	JR	L_5
+L_4:
+	LD	BC,0
+	LD	(IX+-7),BC
+L_5:
+	LD	A,(IX+-7)
+	LD	(_showName),A
+;   48	            drawLessons();
+	CALL	_drawLessons
+;   49	            gfx_SwapDraw();
+	CALL	_gfx_SwapDraw
+;   50	        } if(key == 2 || key == 3 || key == 48){
+L_15:
+	LD	A,(IX+-1)
+	CP	A,2
+	JR	Z,L_14
+	LD	A,(IX+-1)
+	CP	A,3
+	JR	Z,L_14
+	LD	A,(IX+-1)
+	CP	A,48
+	JR	NZ,L_16
+L_14:
+;   51	            weekB = !weekB;
+	LD	A,(_weekB)
+	OR	A,A
+	JR	NZ,L_11
+	LD	BC,1
+	LD	(IX+-4),BC
+	JR	L_12
+L_11:
+	LD	BC,0
+	LD	(IX+-4),BC
+L_12:
+	LD	A,(IX+-4)
+	LD	(_weekB),A
+;   52	            drawLessons();
+	CALL	_drawLessons
+;   53	            gfx_SwapDraw();
+	CALL	_gfx_SwapDraw
+;   54	        }
+;   55	    };
+L_16:
+	CALL	_os_GetCSC
+	LD	(IX+-1),A
+	CP	A,9
+	JR	NZ,L_17
+;   56	
+;   57	    gfx_End();
+	CALL	_gfx_End
+;   58	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _main ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_End                            IMPORT  -----   function
+;_os_GetCSC                          IMPORT  -----   function
+;_weekB                              STATIC      1   variable
+;_showName                           STATIC      1   variable
+;_gfx_SwapDraw                       IMPORT  -----   function
+;_drawLessons                        IMPORT  -----   function
+;_gfx_SetDraw                        IMPORT  -----   function
+;_gfx_Begin                          IMPORT  -----   function
+;temp6                                 IX-7      3   variable
+;temp13                                IX-4      3   variable
+;key                                   IX-1      1   variable
+
+
+; Stack Frame Size: 13 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;   59	void drawLessons(void){
+_drawLessons:
+	LD	HL,-12
+	CALL	__frameset
+;   60	    gfx_FillScreen(255);
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_FillScreen
+	POP	BC
+;   61	
+;   62	    gfx_SetColor(31);
+	LD	BC,31
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   63	    //Måndag
+;   64	    drawLesson(0 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", colorTeknik, textColorLight, "08:00", "09:30");
+	LD	A,(_textColorLight)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_colorTeknik)
+	LD	DE,L__11
+	PUSH	DE
+	LD	C,A
+	LD	DE,L__12
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	L,C
+	PUSH	HL
+	LD	BC,L__13
+	PUSH	BC
+	LD	BC,L__14
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	PUSH	BC
+	CALL	_drawLesson
+	LD	IY,24
+;   65	    drawLesson(0 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Mentorstid", "B107", colorMentorstid, textColorDark, "09:35", "10:15");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorMentorstid)
+	LD	C,A
+	LD	DE,L__15
+	PUSH	DE
+	LD	DE,L__16
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	(IX+-9),DE	; spill
+	LD	DE,L__17
+	LD	(IX+-12),DE	; spill
+	LD	DE,(IX+-9)	; unspill
+	LD	(IX+-9),DE	; spill
+	LD	DE,(IX+-12)	; unspill
+	PUSH	DE
+	LD	DE,(IX+-9)	; unspill
+	LD	L,B
+	LD	BC,L__18
+	PUSH	BC
+	ADD	HL,DE
+	PUSH	HL
+	LD	BC,0
+	PUSH	BC
+	CALL	_drawLesson
+	LD	IY,24
+;   66	    drawLesson(0 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Matte", "B107", colorMatte, textColorDark, "10:20", "11:40");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorMatte)
+	LD	C,A
+	LD	DE,L__19
+	PUSH	DE
+	LD	DE,L__20
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,L__21
+	PUSH	BC
+	ADD	HL,DE
+	LD	BC,L__22
+	PUSH	BC
+	ADD	HL,HL
+	PUSH	HL
+	LD	BC,0
+	PUSH	BC
+	CALL	_drawLesson
+	LD	IY,24
+;   67	    drawLesson(0 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:50", "12:35");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorLunch)
+	LD	C,A
+	LD	DE,L__23
+	PUSH	DE
+	LD	DE,L__24
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	LD	DE,L__25
+	PUSH	DE
+	ADD	HL,HL
+	LD	DE,L__26
+	PUSH	DE
+	ADD	HL,BC
+	PUSH	HL
+	LD	BC,0
+	PUSH	BC
+	CALL	_drawLesson
+	LD	IY,24
+;   68	    drawLesson(0 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Svenska", "B107", colorSvenska, textColorDark, "12:55", "14:05");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorSvenska)
+	LD	C,A
+	LD	DE,L__27
+	PUSH	DE
+	LD	DE,L__28
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,L__29
+	PUSH	BC
+	ADD	HL,HL
+	LD	BC,L__30
+	PUSH	BC
+	ADD	HL,HL
+	PUSH	HL
+	LD	BC,0
+	PUSH	BC
+	CALL	_drawLesson
+	LD	IY,24
+;   69	
+;   70	    drawLesson(0 * lessonWidth, 6 * (lessonHeight + lessonHeightMargin), "Historia", "B107", colorHistoria, textColorDark, "15:40", "17:00");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorHistoria)
+	LD	C,A
+	LD	DE,L__31
+	PUSH	DE
+	LD	DE,L__32
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,HL
+	LD	DE,L__33
+	PUSH	DE
+	ADD	HL,BC
+	LD	DE,L__34
+	PUSH	DE
+	ADD	HL,BC
+	PUSH	HL
+	LD	BC,0
+	PUSH	BC
+	CALL	_drawLesson
+	LD	IY,24
+;   71	
+;   72	    //Tisdag
+;   73	    drawLesson(1 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Svenska", "A158", colorSvenska, textColorDark, "08:10", "09:10");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorSvenska)
+	LD	DE,L__35
+	PUSH	DE
+	LD	C,A
+	LD	DE,L__36
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	L,C
+	PUSH	HL
+	LD	A,(_lessonWidth)
+	LD	BC,L__37
+	PUSH	BC
+	LD	B,A
+	LD	DE,L__38
+	PUSH	DE
+	SEXT	HL
+	LD	DE,0
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   74	    drawLesson(1 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", colorTeknik, textColorLight, "09:30", "11:00");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorTeknik)
+	LD	C,A
+	LD	DE,L__39
+	PUSH	DE
+	LD	DE,L__40
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonWidth)
+	LD	BC,L__41
+	PUSH	BC
+	LD	B,A
+	ADD	HL,DE
+	LD	DE,L__42
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   75	    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:55");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorLunch)
+	LD	C,A
+	LD	DE,L__43
+	PUSH	DE
+	LD	DE,L__44
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	A,(_lessonWidth)
+	LD	BC,L__45
+	PUSH	BC
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__46
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   76	    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", colorKemi, textColorDark, "11:55", "12:45");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorKemi)
+	LD	C,A
+	LD	DE,L__47
+	PUSH	DE
+	LD	DE,L__48
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	DE,L__49
+	PUSH	DE
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__50
+	PUSH	BC
+	PUSH	HL
+	SEXT	HL
+	LD	L,D
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   77	    drawLesson(1 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", colorEngelska, textColorDark, "12:55", "14:15");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorEngelska)
+	LD	C,A
+	LD	DE,L__51
+	PUSH	DE
+	LD	DE,L__52
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	BC,L__53
+	PUSH	BC
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__54
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+	ADD	IY,SP
+;   78	
+;   79	    //Onsdag
+;   80	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", weekB ? "H341" : "F206", colorMatte, textColorDark, "09:25", "10:35");
+	LD	A,(_weekB)
+	OR	A,A
+	LD	SP,IY
+	JR	Z,L_22
+	LD	BC,L__56
+	LD	(IX+-3),BC
+	JR	L_23
+L_22:
+	LD	BC,L__57
+	LD	(IX+-3),BC
+L_23:
+	LD	A,(_textColorDark)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_colorMatte)
+	LD	C,A
+	LD	DE,L__58
+	PUSH	DE
+	LD	DE,L__59
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,DE
+	LD	DE,(IX+-3)
+	PUSH	DE
+	LD	DE,L__60
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   81	    drawLesson(2 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "10:40", "11:30");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorFysik)
+	LD	C,A
+	LD	DE,L__61
+	PUSH	DE
+	LD	DE,L__62
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__63
+	PUSH	DE
+	LD	DE,L__64
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   82	    drawLesson(2 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:30", "12:15");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorLunch)
+	LD	C,A
+	LD	DE,L__65
+	PUSH	DE
+	LD	DE,L__66
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__67
+	PUSH	BC
+	LD	BC,L__68
+	PUSH	BC
+	PUSH	HL
+	SEXT	HL
+	LD	L,D
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   83	
+;   84	    //Tordag
+;   85	    drawLesson(3 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Matte", "F206", colorMatte, textColorDark, "08:00", "09:00");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorMatte)
+	LD	C,A
+	LD	DE,L__69
+	PUSH	DE
+	LD	DE,L__70
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonWidth)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,L__71
+	PUSH	BC
+	LD	BC,HL
+	LD	DE,L__72
+	PUSH	DE
+	ADD	HL,HL
+	LD	DE,0
+	PUSH	DE
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   86	    drawLesson(3 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Idrott", "", colorIdrott, textColorDark, "09:40", "11:10");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorIdrott)
+	LD	C,A
+	LD	DE,L__73
+	PUSH	DE
+	LD	DE,L__74
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,DE
+	LD	DE,L__75
+	PUSH	DE
+	LD	DE,L__76
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   87	    drawLesson(3 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:35", "12:20");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorLunch)
+	LD	C,A
+	LD	DE,L__77
+	PUSH	DE
+	LD	DE,L__78
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__79
+	PUSH	DE
+	LD	DE,L__80
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+	ADD	IY,SP
+;   88	    if(weekB){
+	LD	A,(_weekB)
+	OR	A,A
+	LD	SP,IY
+	JR	Z,L_25
+;   89	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", colorTeknik, textColorLight, "12:20", "13:40");
+	LD	A,(_textColorLight)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_colorTeknik)
+	LD	C,A
+	LD	DE,L__82
+	PUSH	DE
+	LD	DE,L__83
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__84
+	PUSH	BC
+	LD	BC,L__85
+	PUSH	BC
+	PUSH	HL
+	SEXT	HL
+	LD	L,D
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   90	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", colorKemi, textColorDark, "14:00", "15:30");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorKemi)
+	LD	C,A
+	LD	DE,L__86
+	PUSH	DE
+	LD	DE,L__87
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__88
+	PUSH	DE
+	LD	DE,L__89
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+	ADD	IY,SP
+	LD	SP,IY
+;   91	    } else {
+	JR	L_26
+L_25:
+;   92	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", colorFysik, textColorDark, "12:20", "13:40");
+	LD	A,(_textColorDark)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_colorFysik)
+	LD	C,A
+	LD	DE,L__90
+	PUSH	DE
+	LD	DE,L__91
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__92
+	PUSH	BC
+	LD	BC,L__93
+	PUSH	BC
+	PUSH	HL
+	SEXT	HL
+	LD	L,D
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   93	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", colorTeknik, textColorLight, "14:00", "15:30");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorTeknik)
+	LD	C,A
+	LD	DE,L__94
+	PUSH	DE
+	LD	DE,L__95
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__96
+	PUSH	DE
+	LD	DE,L__97
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+	ADD	IY,SP
+	LD	SP,IY
+;   94	    }
+L_26:
+;   95	    drawLesson(3 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Resurstid", "", colorResurstid, textColorLight, "15:30", "16:30");
+	LD	A,(_textColorLight)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_colorResurstid)
+	LD	C,A
+	LD	DE,L__98
+	PUSH	DE
+	LD	DE,L__99
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	A,5
+	CALL	__imul_b
+	LD	A,(_lessonWidth)
+	LD	B,A
+	LD	DE,L__100
+	PUSH	DE
+	LD	DE,L__101
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   96	
+;   97	    //Fredag
+;   98	    drawLesson(4 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Kemi", "H331", colorKemi, textColorDark, "09:50", "10:50");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorKemi)
+	LD	C,A
+	LD	DE,L__102
+	PUSH	DE
+	LD	DE,L__103
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,DE
+	LD	DE,L__104
+	PUSH	DE
+	LD	DE,L__105
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,HL
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;   99	    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:45");
+	LD	A,(_textColorLight)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorLunch)
+	LD	C,A
+	LD	DE,L__106
+	PUSH	DE
+	LD	DE,L__107
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__108
+	PUSH	DE
+	LD	DE,L__109
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,HL
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;  100	    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "12:10", "13:20");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorFysik)
+	LD	C,A
+	LD	DE,L__110
+	PUSH	DE
+	LD	DE,L__111
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	BC,HL
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__112
+	PUSH	BC
+	LD	BC,L__113
+	PUSH	BC
+	PUSH	HL
+	SEXT	HL
+	LD	L,D
+	ADD	HL,HL
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;  101	    drawLesson(4 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", colorEngelska, textColorDark, "13:40", "14:40");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorEngelska)
+	LD	C,A
+	LD	DE,L__114
+	PUSH	DE
+	LD	DE,L__115
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	ADD	HL,HL
+	LD	A,(_lessonWidth)
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__116
+	PUSH	DE
+	LD	DE,L__117
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,HL
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+;  102	    drawLesson(4 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Matte", "H341", colorMatte, textColorDark, "14:50", "15:50");
+	LD	A,(_textColorDark)
+	LD	B,A
+	ADD	IY,SP
+	LD	SP,IY
+	SEXT	HL
+	LD	A,(_colorMatte)
+	LD	C,A
+	LD	DE,L__118
+	PUSH	DE
+	LD	DE,L__119
+	PUSH	DE
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	L,C
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	LD	A,(_lessonHeightMargin)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	A,5
+	CALL	__imul_b
+	LD	A,(_lessonWidth)
+	LD	B,A
+	LD	DE,L__120
+	PUSH	DE
+	LD	DE,L__121
+	PUSH	DE
+	PUSH	HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,HL
+	ADD	HL,HL
+	PUSH	HL
+	CALL	_drawLesson
+	LD	IY,24
+	ADD	IY,SP
+;  103	
+;  104	    gfx_PrintStringXY(weekB ? "Vecka B" : "Vecka A", LCD_WIDTH / 2 - 32, LCD_HEIGHT - lessonHeight / 2);
+	LD	A,(_weekB)
+	OR	A,A
+	LD	SP,IY
+	JR	Z,L_29
+	LD	BC,L__123
+	LD	(IX+-6),BC
+	JR	L_30
+L_29:
+	LD	BC,L__124
+	LD	(IX+-6),BC
+L_30:
+	LD	A,(_lessonHeight)
+	LD	B,A
+	SEXT	HL
+	LD	L,B
+	LD	BC,2
+	CALL	__idivs
+	LD	BC,HL
+	LD	HL,240
+	OR	A,A
+	SBC	HL,BC
+	PUSH	HL
+	LD	BC,128
+	PUSH	BC
+	LD	BC,(IX+-6)
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;  105	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _drawLessons ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_PrintStringXY                  IMPORT  -----   function
+;_colorResurstid                     STATIC      1   variable
+;_colorIdrott                        STATIC      1   variable
+;_colorFysik                         STATIC      1   variable
+;_weekB                              STATIC      1   variable
+;_colorEngelska                      STATIC      1   variable
+;_colorKemi                          STATIC      1   variable
+;_lessonWidth                        STATIC      1   variable
+;_colorHistoria                      STATIC      1   variable
+;_colorSvenska                       STATIC      1   variable
+;_colorLunch                         STATIC      1   variable
+;_colorMatte                         STATIC      1   variable
+;_lessonHeightMargin                 STATIC      1   variable
+;_lessonHeight                       STATIC      1   variable
+;_colorMentorstid                    STATIC      1   variable
+;_textColorDark                      STATIC      1   variable
+;_colorTeknik                        STATIC      1   variable
+;_textColorLight                     STATIC      1   variable
+;_drawLesson                         IMPORT  -----   function
+;_gfx_SetColor                       IMPORT  -----   function
+;_gfx_FillScreen                     IMPORT  -----   function
+;temp27                                IX-6      3   variable
+;temp20                                IX-3      3   variable
+
+
+; Stack Frame Size: 18 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+	SEGMENT STRSECT
+L__11:
+	DB	"09:30"
+	DB	0
+L__12:
+	DB	"08:00"
+	DB	0
+L__13:
+	DB	"B107"
+	DB	0
+L__14:
+	DB	"Teknik"
+	DB	0
+L__15:
+	DB	"10:15"
+	DB	0
+L__16:
+	DB	"09:35"
+	DB	0
+L__17:
+	DB	"B107"
+	DB	0
+L__18:
+	DB	"Mentorstid"
+	DB	0
+L__19:
+	DB	"11:40"
+	DB	0
+L__20:
+	DB	"10:20"
+	DB	0
+L__21:
+	DB	"B107"
+	DB	0
+L__22:
+	DB	"Matte"
+	DB	0
+L__23:
+	DB	"12:35"
+	DB	0
+L__24:
+	DB	"11:50"
+	DB	0
+L__25:
+	DB	0
+L__26:
+	DB	"Lunch"
+	DB	0
+L__27:
+	DB	"14:05"
+	DB	0
+L__28:
+	DB	"12:55"
+	DB	0
+L__29:
+	DB	"B107"
+	DB	0
+L__30:
+	DB	"Svenska"
+	DB	0
+L__31:
+	DB	"17:00"
+	DB	0
+L__32:
+	DB	"15:40"
+	DB	0
+L__33:
+	DB	"B107"
+	DB	0
+L__34:
+	DB	"Historia"
+	DB	0
+L__35:
+	DB	"09:10"
+	DB	0
+L__36:
+	DB	"08:10"
+	DB	0
+L__37:
+	DB	"A158"
+	DB	0
+L__38:
+	DB	"Svenska"
+	DB	0
+L__39:
+	DB	"11:00"
+	DB	0
+L__40:
+	DB	"09:30"
+	DB	0
+L__41:
+	DB	"B107"
+	DB	0
+L__42:
+	DB	"Teknik"
+	DB	0
+L__43:
+	DB	"11:55"
+	DB	0
+L__44:
+	DB	"11:00"
+	DB	0
+L__45:
+	DB	0
+L__46:
+	DB	"Lunch"
+	DB	0
+L__47:
+	DB	"12:45"
+	DB	0
+L__48:
+	DB	"11:55"
+	DB	0
+L__49:
+	DB	"H329"
+	DB	0
+L__50:
+	DB	"Kemi"
+	DB	0
+L__51:
+	DB	"14:15"
+	DB	0
+L__52:
+	DB	"12:55"
+	DB	0
+L__53:
+	DB	"B107"
+	DB	0
+L__54:
+	DB	"Engelska"
+	DB	0
+L__56:
+	DB	"H341"
+	DB	0
+L__57:
+	DB	"F206"
+	DB	0
+L__58:
+	DB	"10:35"
+	DB	0
+L__59:
+	DB	"09:25"
+	DB	0
+L__60:
+	DB	"Matte"
+	DB	0
+L__61:
+	DB	"11:30"
+	DB	0
+L__62:
+	DB	"10:40"
+	DB	0
+L__63:
+	DB	"F206"
+	DB	0
+L__64:
+	DB	"Fysik"
+	DB	0
+L__65:
+	DB	"12:15"
+	DB	0
+L__66:
+	DB	"11:30"
+	DB	0
+L__67:
+	DB	0
+L__68:
+	DB	"Lunch"
+	DB	0
+L__69:
+	DB	"09:00"
+	DB	0
+L__70:
+	DB	"08:00"
+	DB	0
+L__71:
+	DB	"F206"
+	DB	0
+L__72:
+	DB	"Matte"
+	DB	0
+L__73:
+	DB	"11:10"
+	DB	0
+L__74:
+	DB	"09:40"
+	DB	0
+L__75:
+	DB	0
+L__76:
+	DB	"Idrott"
+	DB	0
+L__77:
+	DB	"12:20"
+	DB	0
+L__78:
+	DB	"11:35"
+	DB	0
+L__79:
+	DB	0
+L__80:
+	DB	"Lunch"
+	DB	0
+L__82:
+	DB	"13:40"
+	DB	0
+L__83:
+	DB	"12:20"
+	DB	0
+L__84:
+	DB	"H341"
+	DB	0
+L__85:
+	DB	"Teknik"
+	DB	0
+L__86:
+	DB	"15:30"
+	DB	0
+L__87:
+	DB	"14:00"
+	DB	0
+L__88:
+	DB	"H324La"
+	DB	0
+L__89:
+	DB	"Kemi"
+	DB	0
+L__90:
+	DB	"13:40"
+	DB	0
+L__91:
+	DB	"12:20"
+	DB	0
+L__92:
+	DB	"F204La"
+	DB	0
+L__93:
+	DB	"Fysik"
+	DB	0
+L__94:
+	DB	"15:30"
+	DB	0
+L__95:
+	DB	"14:00"
+	DB	0
+L__96:
+	DB	"H341"
+	DB	0
+L__97:
+	DB	"Teknik"
+	DB	0
+L__98:
+	DB	"16:30"
+	DB	0
+L__99:
+	DB	"15:30"
+	DB	0
+L__100:
+	DB	0
+L__101:
+	DB	"Resurstid"
+	DB	0
+L__102:
+	DB	"10:50"
+	DB	0
+L__103:
+	DB	"09:50"
+	DB	0
+L__104:
+	DB	"H331"
+	DB	0
+L__105:
+	DB	"Kemi"
+	DB	0
+L__106:
+	DB	"11:45"
+	DB	0
+L__107:
+	DB	"11:00"
+	DB	0
+L__108:
+	DB	0
+L__109:
+	DB	"Lunch"
+	DB	0
+L__110:
+	DB	"13:20"
+	DB	0
+L__111:
+	DB	"12:10"
+	DB	0
+L__112:
+	DB	"F206"
+	DB	0
+L__113:
+	DB	"Fysik"
+	DB	0
+L__114:
+	DB	"14:40"
+	DB	0
+L__115:
+	DB	"13:40"
+	DB	0
+L__116:
+	DB	"B107"
+	DB	0
+L__117:
+	DB	"Engelska"
+	DB	0
+L__118:
+	DB	"15:50"
+	DB	0
+L__119:
+	DB	"14:50"
+	DB	0
+L__120:
+	DB	"H341"
+	DB	0
+L__121:
+	DB	"Matte"
+	DB	0
+L__123:
+	DB	"Vecka B"
+	DB	0
+L__124:
+	DB	"Vecka A"
+	DB	0
+	SEGMENT CODE
+;  106	
+;  107	void drawLesson(int16_t x, int16_t y, char *name, char *location, int8_t lessonColor, int8_t textColor, char *timeFrom, char *timeTo){
+_drawLesson:
+	LD	HL,-4
+	CALL	__frameset
+;  108	    gfx_SetColor(lessonColor);
+	LD	C,(IX+18)
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;  109	    gfx_FillRectangle(x, y, lessonWidth, lessonHeight);
+	LD	A,(_lessonHeight)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_lessonWidth)
+	LD	C,A
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	L,C
+	PUSH	HL
+	LD	BC,(IX+9)
+	CALL	__stoi
+	PUSH	HL
+	LD	BC,(IX+6)
+	CALL	__stoi
+	PUSH	HL
+	CALL	_gfx_FillRectangle
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;  110	    gfx_SetColor(lessonBorderColor);
+	LD	A,(_lessonBorderColor)
+	LD	C,A
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;  111	    gfx_Rectangle(x, y, lessonWidth, lessonHeight);
+	LD	A,(_lessonHeight)
+	LD	B,A
+	SEXT	HL
+	LD	A,(_lessonWidth)
+	LD	C,A
+	LD	L,B
+	PUSH	HL
+	SEXT	HL
+	LD	L,C
+	PUSH	HL
+	LD	BC,(IX+9)
+	CALL	__stoi
+	PUSH	HL
+	LD	BC,(IX+6)
+	CALL	__stoi
+	PUSH	HL
+	CALL	_gfx_Rectangle
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;  112	    gfx_SetTextTransparentColor(textColorTransparent);
+	LD	A,(_textColorTransparent)
+	LD	C,A
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetTextTransparentColor
+	POP	BC
+;  113	    gfx_SetTextBGColor(textColorTransparent);
+	LD	A,(_textColorTransparent)
+	LD	C,A
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetTextBGColor
+	POP	BC
+;  114	    gfx_SetTextFGColor(textColor);
+	LD	C,(IX+21)
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetTextFGColor
+	POP	BC
+;  115	    if(showName){
+	LD	A,(_showName)
+	OR	A,A
+	JR	Z,L_33
+;  116	        gfx_PrintStringXY(name, x + 2, y + 2);
+	LD	BC,(IX+9)
+	CALL	__stoi
+	INC	HL
+	INC	HL
+	PUSH	HL
+	LD	BC,(IX+6)
+	CALL	__stoi
+	INC	HL
+	INC	HL
+	PUSH	HL
+	LD	BC,(IX+12)
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;  117	        gfx_PrintStringXY(location, x + lessonWidth - gfx_GetStringWidth(location) - 2, y + lessonHeight - 10);
+	LD	BC,(IX+9)
+	CALL	__stoi
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	IY,HL
+	LEA	BC,IY+-10
+	PUSH	BC
+	LD	BC,(IX+6)
+	LD	DE,(IX+15)
+	PUSH	DE
+	CALL	__stoi
+	LD	BC,HL
+	LD	A,(_lessonWidth)
+	LD	D,A
+	SEXT	HL
+	LD	L,D
+	ADD	HL,BC
+	LD	DE,HL
+	LD	(IX+-3),DE
+	LD	(IX+-4),D
+	CALL	_gfx_GetStringWidth
+	LD	DE,(IX+-3)
+	LD	D,(IX+-4)
+	POP	BC
+	LD	BC,HL
+	LD	HL,DE
+	OR	A,A
+	SBC	HL,BC
+	DEC	HL
+	DEC	HL
+	PUSH	HL
+	LD	BC,(IX+15)
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;  118	    } else {
+	JR	L_34
+L_33:
+;  119	        gfx_PrintStringXY(timeFrom, x + 2, y + 2);
+	LD	BC,(IX+9)
+	CALL	__stoi
+	INC	HL
+	INC	HL
+	PUSH	HL
+	LD	BC,(IX+6)
+	CALL	__stoi
+	INC	HL
+	INC	HL
+	PUSH	HL
+	LD	BC,(IX+24)
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;  120	        gfx_PrintStringXY(timeTo, x + lessonWidth - gfx_GetStringWidth(timeTo) - 2, y + lessonHeight - 10);
+	LD	BC,(IX+9)
+	CALL	__stoi
+	LD	A,(_lessonHeight)
+	LD	B,A
+	LD	DE,HL
+	SEXT	HL
+	LD	L,B
+	ADD	HL,DE
+	LD	IY,HL
+	LEA	BC,IY+-10
+	PUSH	BC
+	LD	BC,(IX+6)
+	LD	DE,(IX+27)
+	PUSH	DE
+	CALL	__stoi
+	LD	BC,HL
+	LD	A,(_lessonWidth)
+	LD	D,A
+	SEXT	HL
+	LD	L,D
+	ADD	HL,BC
+	LD	DE,HL
+	LD	(IX+-3),DE
+	LD	(IX+-4),D
+	CALL	_gfx_GetStringWidth
+	LD	DE,(IX+-3)
+	LD	D,(IX+-4)
+	POP	BC
+	LD	BC,HL
+	LD	HL,DE
+	OR	A,A
+	SBC	HL,BC
+	DEC	HL
+	DEC	HL
+	PUSH	HL
+	LD	BC,(IX+27)
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;  121	    }
+L_34:
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _drawLesson ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_GetStringWidth                 IMPORT  -----   function
+;_gfx_PrintStringXY                  IMPORT  -----   function
+;_showName                           STATIC      1   variable
+;_gfx_SetTextFGColor                 IMPORT  -----   function
+;_gfx_SetTextBGColor                 IMPORT  -----   function
+;_textColorTransparent               STATIC      1   variable
+;_gfx_SetTextTransparentColor        IMPORT  -----   function
+;_gfx_Rectangle                      IMPORT  -----   function
+;_lessonBorderColor                  STATIC      1   variable
+;_lessonWidth                        STATIC      1   variable
+;_lessonHeight                       STATIC      1   variable
+;_gfx_FillRectangle                  IMPORT  -----   function
+;_gfx_SetColor                       IMPORT  -----   function
+;timeTo                               IX+27      3   parameter
+;timeFrom                             IX+24      3   parameter
+;textColor                            IX+21      1   parameter
+;lessonColor                          IX+18      1   parameter
+;location                             IX+15      3   parameter
+;name                                 IX+12      3   parameter
+;y                                     IX+9      2   parameter
+;x                                     IX+6      2   parameter
+
+
+; Stack Frame Size: 34 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+	XREF _gfx_GetStringWidth:ROM
+	XREF _gfx_SetTextTransparentColor:ROM
+	XREF _gfx_SetTextBGColor:ROM
+	XREF _gfx_SetTextFGColor:ROM
+	XREF _gfx_PrintStringXY:ROM
+	XREF _gfx_SwapDraw:ROM
+	XREF _gfx_SetDraw:ROM
+	XREF _gfx_FillRectangle:ROM
+	XREF _gfx_Rectangle:ROM
+	XREF _gfx_FillScreen:ROM
+	XREF _gfx_SetColor:ROM
+	XREF _gfx_End:ROM
+	XREF _gfx_Begin:ROM
+	XREF _os_GetCSC:ROM
+	XREF __idivs:ROM
+	XREF __stoi:ROM
+	XREF __frameset:ROM
+	XREF __imul_b:ROM
+	XDEF _drawLesson
+	XDEF _drawLessons
+	XDEF _main
+	XDEF _weekB
+	XDEF _showName
+	XDEF _textColorTransparent
+	XDEF _textColorLight
+	XDEF _textColorDark
+	XDEF _colorTeknik
+	XDEF _colorSvenska
+	XDEF _colorResurstid
+	XDEF _colorMentorstid
+	XDEF _colorMatte
+	XDEF _colorLunch
+	XDEF _colorKemi
+	XDEF _colorIdrott
+	XDEF _colorHistoria
+	XDEF _colorFysik
+	XDEF _colorEngelska
+	XDEF _lessonBorderColor
+	XDEF _lessonHeightMargin
+	XDEF _lessonHeight
+	XDEF _lessonWidth
+	END
