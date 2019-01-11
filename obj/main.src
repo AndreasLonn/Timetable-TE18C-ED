@@ -42,7 +42,7 @@ _textColorTransparent:
 	DB	254
 _showName:
 	DB	1
-_weekEven:
+_weekB:
 	DB	1
 ;    1	#include <tice.h>
 ;    2	#include <graphx.h>
@@ -71,7 +71,7 @@ _weekEven:
 ;   25	int8_t textColorTransparent = 254;
 ;   26	
 ;   27	bool showName = true;
-;   28	bool weekEven = true;
+;   28	bool weekB = true;
 	SEGMENT CODE
 ;   29	
 ;   30	void drawLesson();
@@ -145,8 +145,8 @@ L_15:
 	CP	A,48
 	JR	NZ,L_16
 L_14:
-;   51	            weekEven = !weekEven;
-	LD	A,(_weekEven)
+;   51	            weekB = !weekB;
+	LD	A,(_weekB)
 	OR	A,A
 	JR	NZ,L_11
 	LD	BC,1
@@ -157,7 +157,7 @@ L_11:
 	LD	(IX+-4),BC
 L_12:
 	LD	A,(IX+-4)
-	LD	(_weekEven),A
+	LD	(_weekB),A
 ;   52	            drawLessons();
 	CALL	_drawLessons
 ;   53	            gfx_SwapDraw();
@@ -182,7 +182,7 @@ L_16:
 ;Name                         Addr/Register   Size   Type
 ;_gfx_End                            IMPORT  -----   function
 ;_os_GetCSC                          IMPORT  -----   function
-;_weekEven                           STATIC      1   variable
+;_weekB                              STATIC      1   variable
 ;_showName                           STATIC      1   variable
 ;_gfx_SwapDraw                       IMPORT  -----   function
 ;_drawLessons                        IMPORT  -----   function
@@ -506,7 +506,7 @@ _drawLessons:
 	PUSH	HL
 	CALL	_drawLesson
 	LD	IY,24
-;   75	    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:55");
+;   75	    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:55");
 	LD	A,(_textColorLight)
 	LD	B,A
 	ADD	IY,SP
@@ -533,22 +533,20 @@ _drawLessons:
 	SEXT	HL
 	LD	L,B
 	ADD	HL,DE
-	LD	BC,HL
-	ADD	HL,HL
 	LD	A,(_lessonWidth)
-	LD	DE,L__45
-	PUSH	DE
-	LD	D,A
-	ADD	HL,BC
-	LD	BC,L__46
+	LD	BC,L__45
 	PUSH	BC
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__46
+	PUSH	DE
 	PUSH	HL
 	SEXT	HL
-	LD	L,D
+	LD	L,B
 	PUSH	HL
 	CALL	_drawLesson
 	LD	IY,24
-;   76	    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", colorKemi, textColorDark, "11:55", "12:45");
+;   76	    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", colorKemi, textColorDark, "11:55", "12:45");
 	LD	A,(_textColorDark)
 	LD	B,A
 	ADD	IY,SP
@@ -575,16 +573,18 @@ _drawLessons:
 	SEXT	HL
 	LD	L,B
 	ADD	HL,DE
-	LD	A,(_lessonWidth)
-	LD	BC,L__49
-	PUSH	BC
-	LD	B,A
+	LD	BC,HL
 	ADD	HL,HL
-	LD	DE,L__50
+	LD	A,(_lessonWidth)
+	LD	DE,L__49
 	PUSH	DE
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__50
+	PUSH	BC
 	PUSH	HL
 	SEXT	HL
-	LD	L,B
+	LD	L,D
 	PUSH	HL
 	CALL	_drawLesson
 	LD	IY,24
@@ -632,8 +632,8 @@ _drawLessons:
 	ADD	IY,SP
 ;   78	
 ;   79	    //Onsdag
-;   80	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", weekEven ? "H341" : "F206", colorMatte, textColorDark, "09:25", "10:35");
-	LD	A,(_weekEven)
+;   80	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", weekB ? "H341" : "F206", colorMatte, textColorDark, "09:25", "10:35");
+	LD	A,(_weekB)
 	OR	A,A
 	LD	SP,IY
 	JR	Z,L_22
@@ -886,8 +886,8 @@ L_23:
 	CALL	_drawLesson
 	LD	IY,24
 	ADD	IY,SP
-;   88	    if(weekEven){
-	LD	A,(_weekEven)
+;   88	    if(weekB){
+	LD	A,(_weekB)
 	OR	A,A
 	LD	SP,IY
 	JR	Z,L_25
@@ -1159,7 +1159,7 @@ L_26:
 	PUSH	HL
 	CALL	_drawLesson
 	LD	IY,24
-;   99	    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:45");
+;   99	    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:45");
 	LD	A,(_textColorLight)
 	LD	B,A
 	ADD	IY,SP
@@ -1186,24 +1186,22 @@ L_26:
 	SEXT	HL
 	LD	L,B
 	ADD	HL,DE
-	LD	BC,HL
-	ADD	HL,HL
 	LD	A,(_lessonWidth)
-	LD	D,A
-	ADD	HL,BC
-	LD	BC,L__108
-	PUSH	BC
-	LD	BC,L__109
-	PUSH	BC
+	LD	B,A
+	ADD	HL,HL
+	LD	DE,L__108
+	PUSH	DE
+	LD	DE,L__109
+	PUSH	DE
 	PUSH	HL
 	SEXT	HL
-	LD	L,D
+	LD	L,B
 	ADD	HL,HL
 	ADD	HL,HL
 	PUSH	HL
 	CALL	_drawLesson
 	LD	IY,24
-;  100	    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "12:10", "13:20");
+;  100	    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "12:10", "13:20");
 	LD	A,(_textColorDark)
 	LD	B,A
 	ADD	IY,SP
@@ -1230,16 +1228,18 @@ L_26:
 	SEXT	HL
 	LD	L,B
 	ADD	HL,DE
-	LD	A,(_lessonWidth)
-	LD	B,A
+	LD	BC,HL
 	ADD	HL,HL
-	LD	DE,L__112
-	PUSH	DE
-	LD	DE,L__113
-	PUSH	DE
+	LD	A,(_lessonWidth)
+	LD	D,A
+	ADD	HL,BC
+	LD	BC,L__112
+	PUSH	BC
+	LD	BC,L__113
+	PUSH	BC
 	PUSH	HL
 	SEXT	HL
-	LD	L,B
+	LD	L,D
 	ADD	HL,HL
 	ADD	HL,HL
 	PUSH	HL
@@ -1333,8 +1333,8 @@ L_26:
 	LD	IY,24
 	ADD	IY,SP
 ;  103	
-;  104	    gfx_PrintStringXY(weekEven ? "Jamn Vecka" : "Udda Vecka", LCD_WIDTH / 2 - 32, LCD_HEIGHT - lessonHeight / 2);
-	LD	A,(_weekEven)
+;  104	    gfx_PrintStringXY(weekB ? "Vecka B" : "Vecka A", LCD_WIDTH / 2 - 32, LCD_HEIGHT - lessonHeight / 2);
+	LD	A,(_weekB)
 	OR	A,A
 	LD	SP,IY
 	JR	Z,L_29
@@ -1376,7 +1376,7 @@ L_30:
 ;_colorResurstid                     STATIC      1   variable
 ;_colorIdrott                        STATIC      1   variable
 ;_colorFysik                         STATIC      1   variable
-;_weekEven                           STATIC      1   variable
+;_weekB                              STATIC      1   variable
 ;_colorEngelska                      STATIC      1   variable
 ;_colorKemi                          STATIC      1   variable
 ;_lessonWidth                        STATIC      1   variable
@@ -1723,10 +1723,10 @@ L__121:
 	DB	"Matte"
 	DB	0
 L__123:
-	DB	"Jamn Vecka"
+	DB	"Vecka B"
 	DB	0
 L__124:
-	DB	"Udda Vecka"
+	DB	"Vecka A"
 	DB	0
 	SEGMENT CODE
 ;  106	
@@ -1993,7 +1993,7 @@ L_34:
 	XDEF _drawLesson
 	XDEF _drawLessons
 	XDEF _main
-	XDEF _weekEven
+	XDEF _weekB
 	XDEF _showName
 	XDEF _textColorTransparent
 	XDEF _textColorLight

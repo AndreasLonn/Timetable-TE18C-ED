@@ -10,8 +10,8 @@ cleanup  D1A952 D1A966            14h
 exit     D1A966 D1A96C             6h
 code     D1A96C D1B568           BFCh
 data     D1B568 D1B59E            36h
-strsect  D1B59E D1B826           288h
-text     D1B826 D1B826             0h
+strsect  D1B59E D1B820           282h
+text     D1B820 D1B820             0h
 
 Label                          Value
 ----------------------------   ------
@@ -26,7 +26,7 @@ __errsp                      = D1A944
 _drawLesson                  = D1B3BF
 _drawLessons                 = D1AA1F
 _main                        = D1A96C
-_weekEven                    = D1B59D
+_weekB                       = D1B59D
 _showName                    = D1B59C
 _textColorTransparent        = D1B59B
 _textColorLight              = D1B59A

@@ -72,8 +72,8 @@ void drawLessons(void){
     //Tisdag
     drawLesson(1 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Svenska", "A158", colorSvenska, textColorDark, "08:10", "09:10");
     drawLesson(1 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", colorTeknik, textColorLight, "09:30", "11:00");
-    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:55");
-    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", colorKemi, textColorDark, "11:55", "12:45");
+    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:55");
+    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", colorKemi, textColorDark, "11:55", "12:45");
     drawLesson(1 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", colorEngelska, textColorDark, "12:55", "14:15");
 
     //Onsdag
@@ -96,8 +96,8 @@ void drawLessons(void){
 
     //Fredag
     drawLesson(4 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Kemi", "H331", colorKemi, textColorDark, "09:50", "10:50");
-    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:45");
-    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "12:10", "13:20");
+    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", colorLunch, textColorLight, "11:00", "11:45");
+    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", colorFysik, textColorDark, "12:10", "13:20");
     drawLesson(4 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", colorEngelska, textColorDark, "13:40", "14:40");
     drawLesson(4 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Matte", "H341", colorMatte, textColorDark, "14:50", "15:50");
 
