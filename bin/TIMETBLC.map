@@ -8,10 +8,10 @@ libs     D1A8DA D1A917            3Dh
 startup  D1A917 D1A952            3Bh
 cleanup  D1A952 D1A966            14h
 exit     D1A966 D1A96C             6h
-code     D1A96C D1B568           BFCh
-data     D1B568 D1B59E            36h
-strsect  D1B59E D1B820           282h
-text     D1B820 D1B820             0h
+code     D1A96C D1B382           A16h
+data     D1B382 D1B3A8            26h
+strsect  D1B3A8 D1B757           3AFh
+text     D1B757 D1B757             0h
 
 Label                          Value
 ----------------------------   ------
@@ -23,33 +23,15 @@ _exit                        = D1A968
 __exit                       = D1A944
 __exitsp                     = D1A944
 __errsp                      = D1A944
-_drawLesson                  = D1B3BF
-_drawLessons                 = D1AA1F
+_nextMode                    = D1B304
+_drawLesson                  = D1B134
+_drawLessons                 = D1AA23
 _main                        = D1A96C
-_weekB                       = D1B59D
-_showName                    = D1B59C
-_textColorTransparent        = D1B59B
-_textColorLight              = D1B59A
-_textColorDark               = D1B599
-_colorTeknik                 = D1B598
-_colorSvenska                = D1B597
-_colorResurstid              = D1B596
-_colorMentorstid             = D1B595
-_colorMatte                  = D1B594
-_colorLunch                  = D1B593
-_colorKemi                   = D1B592
-_colorIdrott                 = D1B591
-_colorHistoria               = D1B590
-_colorFysik                  = D1B58F
-_colorEngelska               = D1B58E
-_lessonBorderColor           = D1B58D
-_lessonHeightMargin          = D1B58C
-_lessonHeight                = D1B58B
-_lessonWidth                 = D1B58A
-__frameset                   = D1B55A
-__idivs                      = 00013C
-__imul_b                     = 000158
-__imul_b                     = 000150
+_weekB                       = D1B3A7
+_lessonInfo                  = D1B3A4
+__case8                      = 000124
+__frameset                   = D1B374
+__seqcase                    = 000210
 __stoi                       = 000260
 _boot_GetBootMajorVer        = 000080
 _boot_GetHardwareVer         = 000084
