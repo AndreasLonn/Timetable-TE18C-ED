@@ -1,74 +1,535 @@
 ; Zilog eZ80 ANSI C Compiler Release 3.4
-; -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -debug -optsize -noreduceopt -nomodsect -peephole -globalopt
 ; -localcse -const=ROM 
 	FILE	"..\SRC\MAIN.C"
 	.assume ADL=1
+.DEBUG "C"
+	SEGMENT CODE
+.BEGREC "NONAME0",9
+.DEFINE "sign"
+.VALUE 0
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "mant"
+.VALUE 2
+.CLASS 8
+.DIM 7
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME0"
+.BEGREC "NONAME1",18
+.DEFINE "real"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "imag"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME1"
+.BEGREC "NONAME2",11
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME0"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME2"
+.BEGREC "NONAME3",20
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME1"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME3"
+.BEGREC "NONAME4",11
+.DEFINE "cols"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "rows"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME0"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME4"
+.BEGREC "NONAME5",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME5"
+.BEGREC "NONAME6",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME6"
+.BEGREC "NONAME7",3
+.DEFINE "size"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME7"
+.BEGREC "NONAME8",6
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "rem"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME8"
+.BEGREC "NONAME9",8
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 5
+.ENDEF
+.DEFINE "rem"
+.VALUE 4
+.CLASS 8
+.TYPE 5
+.ENDEF
+.ENDREC "NONAME9"
+.BEGREC "header",6
+.DEFINE "s"
+.VALUE 0
+.CLASS 11
+.TAG "NONAME10"
+.TYPE 8
+.ENDEF
+.DEFINE "x"
+.VALUE 0
+.CLASS 11
+.TYPE 2
+.ENDEF
+.ENDREC "header"
+.BEGREC "NONAME10",6
+.DEFINE "ptr"
+.VALUE 0
+.CLASS 8
+.TAG "header"
+.TYPE 40
+.ENDEF
+.DEFINE "size"
+.VALUE 3
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME10"
+.BEGREC "NONAME11",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME11"
+.BEGREC "NONAME12",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME12"
+.BEGREC "NONAME13",6
+.DEFINE "x"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "y"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME13"
+.BEGREC "NONAME14",12
+.DEFINE "xmin"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymin"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "xmax"
+.VALUE 6
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymax"
+.VALUE 9
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME14"
+.BEGREC "NONAME15",18
+.DEFINE "map"
+.VALUE 0
+.CLASS 8
+.TYPE 44
+.ENDEF
+.DEFINE "tiles"
+.VALUE 3
+.CLASS 8
+.TAG "NONAME11"
+.TYPE 296
+.ENDEF
+.DEFINE "tile_height"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "tile_width"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_height"
+.VALUE 8
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_width"
+.VALUE 9
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_width"
+.VALUE 10
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_height"
+.VALUE 11
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 12
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "width"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "y_loc"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "x_loc"
+.VALUE 15
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME15"
+.BEGREC "fmt_type",19
+.DEFINE "status"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "flags"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "size"
+.VALUE 2
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "chr"
+.VALUE 3
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "type"
+.VALUE 4
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "field_width"
+.VALUE 5
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "precision"
+.VALUE 6
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "set_begin"
+.VALUE 7
+.CLASS 8
+.TYPE 34
+.ENDEF
+.DEFINE "set_end"
+.VALUE 10
+.CLASS 8
+.TYPE 34
+.ENDEF
+.DEFINE "pad_whole"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_pre_fract"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_post_fract"
+.VALUE 15
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_at"
+.VALUE 16
+.CLASS 8
+.TYPE 34
+.ENDEF
+.ENDREC "fmt_type"
+.BEGREC "flt_info",12
+.DEFINE "flags"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "digits"
+.VALUE 2
+.CLASS 8
+.DIM 10
+.TYPE 108
+.ENDEF
+.ENDREC "flt_info"
+.BEGREC "__stdio_file",1
+.DEFINE "slot"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "__stdio_file"
 	SEGMENT DATA
 _lessonInfo:
 	DW	0
 	DB	0
+.DEFINE "lessonInfo"
+.ALIAS "_lessonInfo"
+.CLASS 69
+.VALUE _lessonInfo
+.TYPE 4
+.ENDEF
+	SEGMENT BSS
 _weekB:
-	DB	0
+	DS	1
+.DEFINE "weekB"
+.ALIAS "_weekB"
+.CLASS 83
+.VALUE _weekB
+.TYPE 12
+.ENDEF
 ;    1	#include <tice.h>
 ;    2	#include <graphx.h>
 ;    3	#include <stdint.h>
 ;    4	#include <stdlib.h>
-;    5	
-;    6	#define lessonWidth 64
-;    7	#define lessonHeight 32
-;    8	#define lessonHeightMargin (16 / 6)
-;    9	#define lessonBorderColor 0
-;   10	
-;   11	#define colorEngelska 230
-;   12	#define colorFysik 47
-;   13	#define colorHistoria 30
-;   14	#define colorIdrott 253
-;   15	#define colorKemi 63
-;   16	#define colorLunch 224
-;   17	#define colorMatte 15
-;   18	#define colorMentorstid 223
-;   19	#define colorResurstid 104
-;   20	#define colorSvenska 231
-;   21	#define colorTeknik 5
-;   22	
-;   23	#define textColorDark 0
-;   24	#define textColorLight 255
-;   25	#define textColorTransparent 254
-;   26	
-;   27	enum LessonInfo { NameLocation, TimeStartEnd, TeacherLength };
-;   28	enum LessonInfo lessonInfo = NameLocation;
-;   29	bool weekB = false;
-	SEGMENT CODE
-;   30	
-;   31	void drawLesson();
-;   32	void drawLessons();
-;   33	enum LessonInfo nextMode();
-;   34	
-;   35	void main(void) {
-_main:
-	LD	HL,-4
-	CALL	__frameset
-;   36	
-;   37	    sk_key_t key;
+;    5	#include <stdio.h>
+;    6	#include <string.h>
+;    7	//#include <debug.h>
+;    8	
+;    9	#define lessonWidth 64
+;   10	#define lessonHeight 32
+;   11	#define lessonHeightMargin (8 / 3)
+;   12	#define lessonBorderColor 0
+;   13	
+;   14	#define colorEngelska 230
+;   15	#define colorFysik 47
+;   16	#define colorHistoria 30
+;   17	#define colorIdrott 253
+;   18	#define colorKemi 63
+;   19	#define colorLunch 224
+;   20	#define colorMatte 15
+;   21	#define colorMentorstid 223
+;   22	#define colorResurstid 104
+;   23	#define colorSvenska 231
+;   24	#define colorTeknik 5
+;   25	
+;   26	#define textColorDark 0
+;   27	#define textColorLight 255
+;   28	#define textColorTransparent 254
+;   29	
+;   30	enum LessonInfo { NameLocation, TimeStartEnd, TeacherLength };
+;   31	enum LessonInfo lessonInfo = NameLocation;
+;   32	
+;   33	void drawLesson();
+;   34	void drawLessons();
+;   35	enum LessonInfo nextMode();
+;   36	uint8_t getWeekNumber();
+;   37	bool getWeekB();
 ;   38	
-;   39	    gfx_Begin();
+;   39	bool weekB;
+	SEGMENT CODE
+;   40	
+;   41	void main(void) {
+_main:
+.DEFINE "_main"
+
+.VALUE _main
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "main",41,"_main"
+
+.LINE 41
+
+.DEFINE "key"
+
+.CLASS 65
+
+.VALUE -1
+
+.TYPE 12
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+	DEC	SP
+;   42	
+;   43	    sk_key_t key;
+;   44	    uint8_t week;
+;   45	
+;   46	    gfx_Begin();
+.LINE 46
+
 	CALL	_gfx_Begin
-;   40	    gfx_SetDrawBuffer();
+;   47	
+;   48	    gfx_SetDrawBuffer();
+.LINE 48
+
 	LD	BC,1
 	PUSH	BC
 	CALL	_gfx_SetDraw
 	POP	BC
-;   41	
-;   42	    drawLessons();
+;   49	
+;   50	    weekB = getWeekB();
+.LINE 50
+
+	CALL	_getWeekB
+	LD	(_weekB),A
+;   51	
+;   52	    drawLessons();
+.LINE 52
+
 	CALL	_drawLessons
-;   43	
-;   44	    gfx_SwapDraw();
+;   53	
+;   54	    gfx_SwapDraw();
+.LINE 54
+
 	CALL	_gfx_SwapDraw
-;   45	
-;   46	    while((key = os_GetCSC()) != 9){
+;   55	
+;   56	    while((key = os_GetCSC()) != 9){
+.LINE 56
+
 	JR	L_12
 L_13:
-;   47	        if(key == 1 || key == 4 || key == 15 || key == 54){
+;   57	        if(key == 1 || key == 4 || key == 15 || key == 54){
+.LINE 57
+
 	LD	A,(IX+-1)
 	CP	A,1
 	JR	Z,L_3
@@ -82,9 +543,11 @@ L_13:
 	CP	A,54
 	JR	NZ,L_11
 L_3:
-;   48	            lessonInfo = nextMode(lessonInfo, key != 1);
+;   58	            lessonInfo = nextMode(lessonInfo, key != 4);
+.LINE 58
+
 	LD	A,(IX+-1)
-	CP	A,1
+	CP	A,4
 	JR	Z,L__5
 	LD	A,1
 	JR	L__6
@@ -100,12 +563,18 @@ L__6:
 	POP	BC
 	POP	BC
 	LD	(_lessonInfo),HL
-;   49	            drawLessons();
+;   59	            drawLessons();
+.LINE 59
+
 	CALL	_drawLessons
-;   50	            gfx_SwapDraw();
+;   60	            gfx_SwapDraw();
+.LINE 60
+
 	CALL	_gfx_SwapDraw
-;   51	        } if(key == 2 || key == 3 || key == 48){
+;   61	        } if(key == 2 || key == 3 || key == 48){
 L_11:
+.LINE 61
+
 	LD	A,(IX+-1)
 	CP	A,2
 	JR	Z,L_10
@@ -116,7 +585,9 @@ L_11:
 	CP	A,48
 	JR	NZ,L_12
 L_10:
-;   52	            weekB = !weekB;
+;   62	            weekB = !weekB;
+.LINE 62
+
 	LD	A,(_weekB)
 	OR	A,A
 	JR	NZ,L_7
@@ -129,21 +600,31 @@ L_7:
 L_8:
 	LD	A,(IX+-4)
 	LD	(_weekB),A
-;   53	            drawLessons();
+;   63	            drawLessons();
+.LINE 63
+
 	CALL	_drawLessons
-;   54	            gfx_SwapDraw();
+;   64	            gfx_SwapDraw();
+.LINE 64
+
 	CALL	_gfx_SwapDraw
-;   55	        }
-;   56	    };
+;   65	        }
+;   66	    };
 L_12:
+.LINE 66
+
 	CALL	_os_GetCSC
 	LD	(IX+-1),A
 	CP	A,9
 	JR	NZ,L_13
-;   57	
-;   58	    gfx_End();
+;   67	
+;   68	    gfx_End();
+.LINE 68
+
 	CALL	_gfx_End
-;   59	}
+;   69	}
+.LINE 69
+
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -153,11 +634,12 @@ L_12:
 ;Name                         Addr/Register   Size   Type
 ;_gfx_End                            IMPORT  -----   function
 ;_os_GetCSC                          IMPORT  -----   function
-;_weekB                              STATIC      1   variable
 ;_lessonInfo                         STATIC      3   variable
 ;_nextMode                           IMPORT  -----   function
 ;_gfx_SwapDraw                       IMPORT  -----   function
 ;_drawLessons                        IMPORT  -----   function
+;_weekB                              STATIC      1   variable
+;_getWeekB                           IMPORT  -----   function
 ;_gfx_SetDraw                        IMPORT  -----   function
 ;_gfx_Begin                          IMPORT  -----   function
 ;temp9                                 IX-4      3   variable
@@ -168,23 +650,185 @@ L_12:
 ;       Spill Code: 0 (instruction)
 
 
-;   60	void drawLessons(void){
+.ENDFUNC "main",69,"_main"
+;   70	void drawLessons(void){
 _drawLessons:
-	LD	HL,-6
-	CALL	__frameset
-;   61	    gfx_FillScreen(255);
+.DEFINE "_drawLessons"
+
+.VALUE _drawLessons
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "drawLessons",70,"_drawLessons"
+
+.LINE 70
+
+.DEFINE "dateMsg"
+
+.CLASS 65
+
+.VALUE -3
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "month"
+
+.CLASS 65
+
+.VALUE -4
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "day"
+
+.CLASS 65
+
+.VALUE -5
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "dayS"
+
+.CLASS 65
+
+.VALUE -8
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "monthS"
+
+.CLASS 65
+
+.VALUE -11
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "yearS"
+
+.CLASS 65
+
+.VALUE -14
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "weekS"
+
+.CLASS 65
+
+.VALUE -17
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "year"
+
+.CLASS 65
+
+.VALUE -22
+
+.TYPE 13
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	LEA	HL,IX+-22
+	LD	SP,HL
+;   71	    uint8_t day;
+;   72	    uint8_t month;
+;   73	    uint16_t year;
+;   74	    char* dateMsg = malloc(32);
+.LINE 74
+
+	LD	BC,32
+	PUSH	BC
+	CALL	_malloc
+	POP	BC
+	LD	(IX+-3),HL
+;   75	    char* dayS = malloc(32);
+.LINE 75
+
+	LD	BC,32
+	PUSH	BC
+	CALL	_malloc
+	POP	BC
+	LD	(IX+-8),HL
+;   76	    char* monthS = malloc(32);
+.LINE 76
+
+	LD	BC,32
+	PUSH	BC
+	CALL	_malloc
+	POP	BC
+	LD	(IX+-11),HL
+;   77	    char* yearS = malloc(32);
+.LINE 77
+
+	LD	BC,32
+	PUSH	BC
+	CALL	_malloc
+	POP	BC
+	LD	(IX+-14),HL
+;   78	    char* weekS = malloc(32);
+.LINE 78
+
+	LD	BC,32
+	PUSH	BC
+	CALL	_malloc
+	POP	BC
+	LD	(IX+-17),HL
+;   79	
+;   80	    memset(dateMsg, 0, sizeof(dateMsg));
+.LINE 80
+
+	LD	BC,3
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_memset
+	POP	BC
+	POP	BC
+	POP	BC
+;   81	
+;   82	    gfx_FillScreen(255);
+.LINE 82
+
 	LD	BC,255
 	PUSH	BC
 	CALL	_gfx_FillScreen
 	POP	BC
-;   62	
-;   63	    gfx_SetColor(31);
+;   83	
+;   84	    gfx_SetColor(31);
+.LINE 84
+
 	LD	BC,31
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;   64	    //Måndag
-;   65	    drawLesson(0 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", "chuga", "01:30", colorTeknik, textColorLight, "08:00", "09:30");
+;   85	    //Måndag
+;   86	    drawLesson(0 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", "chuga", "01:30", colorTeknik, textColorLight, "08:00", "09:30");
+.LINE 86
+
 	LD	BC,L__13
 	PUSH	BC
 	LD	BC,L__14
@@ -208,7 +852,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   66	    drawLesson(0 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Mentorstid", "B107", "selfr, altla", "00:40", colorMentorstid, textColorDark, "09:35", "10:15");
+;   87	    drawLesson(0 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Mentorstid", "B107", "selfr, altla", "00:40", colorMentorstid, textColorDark, "09:35", "10:15");
+.LINE 87
+
 	LD	BC,L__19
 	PUSH	BC
 	LD	BC,L__20
@@ -233,7 +879,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   67	    drawLesson(0 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Matte", "B107", "drada", "01:20", colorMatte, textColorDark, "10:20", "11:40");
+;   88	    drawLesson(0 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Matte", "B107", "drada", "01:20", colorMatte, textColorDark, "10:20", "11:40");
+.LINE 88
+
 	LD	BC,L__25
 	PUSH	BC
 	LD	BC,L__26
@@ -258,7 +906,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   68	    drawLesson(0 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:50", "12:35");
+;   89	    drawLesson(0 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:50", "12:35");
+.LINE 89
+
 	LD	BC,L__31
 	PUSH	BC
 	LD	BC,L__32
@@ -283,7 +933,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   69	    drawLesson(0 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Svenska", "B107", "selfr", "01:10", colorSvenska, textColorDark, "12:55", "14:05");
+;   90	    drawLesson(0 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Svenska", "B107", "selfr", "01:10", colorSvenska, textColorDark, "12:55", "14:05");
+.LINE 90
+
 	LD	BC,L__37
 	PUSH	BC
 	LD	BC,L__38
@@ -308,8 +960,10 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   70	
-;   71	    drawLesson(0 * lessonWidth, 6 * (lessonHeight + lessonHeightMargin), "Historia", "B107", "olser", "01:20", colorHistoria, textColorDark, "15:40", "17:00");
+;   91	
+;   92	    drawLesson(0 * lessonWidth, 6 * (lessonHeight + lessonHeightMargin), "Historia", "B107", "olser", "01:20", colorHistoria, textColorDark, "15:40", "17:00");
+.LINE 92
+
 	LD	BC,L__43
 	PUSH	BC
 	LD	BC,L__44
@@ -334,9 +988,11 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   72	
-;   73	    //Tisdag
-;   74	    drawLesson(1 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Svenska", "A158", "selfr", "01:00", colorSvenska, textColorDark, "08:10", "09:10");
+;   93	
+;   94	    //Tisdag
+;   95	    drawLesson(1 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Svenska", "A158", "selfr", "01:00", colorSvenska, textColorDark, "08:10", "09:10");
+.LINE 95
+
 	LD	BC,L__49
 	PUSH	BC
 	LD	BC,L__50
@@ -361,7 +1017,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   75	    drawLesson(1 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", "chuga", "01:30", colorTeknik, textColorLight, "09:30", "11:00");
+;   96	    drawLesson(1 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Teknik", "B107", "chuga", "01:30", colorTeknik, textColorLight, "09:30", "11:00");
+.LINE 96
+
 	LD	BC,L__55
 	PUSH	BC
 	LD	BC,L__56
@@ -386,7 +1044,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   76	    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:55", colorLunch, textColorLight, "11:00", "11:55");
+;   97	    drawLesson(1 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:55", colorLunch, textColorLight, "11:00", "11:55");
+.LINE 97
+
 	LD	BC,L__61
 	PUSH	BC
 	LD	BC,L__62
@@ -411,7 +1071,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   77	    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", "altla", "00:50", colorKemi, textColorDark, "11:55", "12:45");
+;   98	    drawLesson(1 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H329", "altla", "00:50", colorKemi, textColorDark, "11:55", "12:45");
+.LINE 98
+
 	LD	BC,L__67
 	PUSH	BC
 	LD	BC,L__68
@@ -436,7 +1098,9 @@ _drawLessons:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   78	    drawLesson(1 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", "jormo", "01:20", colorEngelska, textColorDark, "12:55", "14:15");
+;   99	    drawLesson(1 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", "jormo", "01:20", colorEngelska, textColorDark, "12:55", "14:15");
+.LINE 99
+
 	LD	BC,L__73
 	PUSH	BC
 	LD	BC,L__74
@@ -460,19 +1124,21 @@ _drawLessons:
 	CALL	_drawLesson
 	LD	IY,30
 	ADD	IY,SP
-;   79	
-;   80	    //Onsdag
-;   81	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", weekB ? "H341" : "F206", "drada", "01:10", colorMatte, textColorDark, "09:25", "10:35");
+	LD	SP,IY
+;  100	
+;  101	    //Onsdag
+;  102	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", !weekB ? "H341" : "F206", "drada", "01:10", colorMatte, textColorDark, "09:25", "10:35");
+.LINE 102
+
 	LD	A,(_weekB)
 	OR	A,A
-	LD	SP,IY
-	JR	Z,L_18
+	JR	NZ,L_18
 	LD	BC,L__80
-	LD	(IX+-3),BC
+	LD	(IX+-20),BC
 	JR	L_19
 L_18:
 	LD	BC,L__81
-	LD	(IX+-3),BC
+	LD	(IX+-20),BC
 L_19:
 	LD	BC,L__82
 	PUSH	BC
@@ -486,7 +1152,7 @@ L_19:
 	PUSH	BC
 	LD	BC,L__85
 	PUSH	BC
-	LD	BC,(IX+-3)
+	LD	BC,(IX+-20)
 	PUSH	BC
 	LD	BC,L__86
 	PUSH	BC
@@ -498,7 +1164,9 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   82	    drawLesson(2 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "00:50", colorFysik, textColorDark, "10:40", "11:30");
+;  103	    drawLesson(2 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "00:50", colorFysik, textColorDark, "10:40", "11:30");
+.LINE 103
+
 	LD	BC,L__87
 	PUSH	BC
 	LD	BC,L__88
@@ -523,7 +1191,9 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   83	    drawLesson(2 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:30", "12:15");
+;  104	    drawLesson(2 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:30", "12:15");
+.LINE 104
+
 	LD	BC,L__93
 	PUSH	BC
 	LD	BC,L__94
@@ -548,9 +1218,11 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   84	
-;   85	    //Tordag
-;   86	    drawLesson(3 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Matte", "F206", "drada", "01:00", colorMatte, textColorDark, "08:00", "09:00");
+;  105	
+;  106	    //Tordag
+;  107	    drawLesson(3 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Matte", "F206", "drada", "01:00", colorMatte, textColorDark, "08:00", "09:00");
+.LINE 107
+
 	LD	BC,L__99
 	PUSH	BC
 	LD	BC,L__100
@@ -575,7 +1247,9 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   87	    drawLesson(3 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Idrott", "", "tejpe", "01:30", colorIdrott, textColorDark, "09:40", "11:10");
+;  108	    drawLesson(3 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Idrott", "", "tejpe", "01:30", colorIdrott, textColorDark, "09:40", "11:10");
+.LINE 108
+
 	LD	BC,L__105
 	PUSH	BC
 	LD	BC,L__106
@@ -600,7 +1274,9 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   88	    drawLesson(3 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:35", "12:20");
+;  109	    drawLesson(3 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:35", "12:20");
+.LINE 109
+
 	LD	BC,L__111
 	PUSH	BC
 	LD	BC,L__112
@@ -624,12 +1300,16 @@ L_19:
 	CALL	_drawLesson
 	LD	IY,30
 	ADD	IY,SP
-;   89	    if(weekB){
+	LD	SP,IY
+;  110	    if(weekB){
+.LINE 110
+
 	LD	A,(_weekB)
 	OR	A,A
-	LD	SP,IY
 	JR	Z,L_21
-;   90	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "12:20", "13:40");
+;  111	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "12:20", "13:40");
+.LINE 111
+
 	LD	BC,L__118
 	PUSH	BC
 	LD	BC,L__119
@@ -654,7 +1334,9 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   91	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "14:00", "15:30");
+;  112	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "14:00", "15:30");
+.LINE 112
+
 	LD	BC,L__124
 	PUSH	BC
 	LD	BC,L__125
@@ -679,10 +1361,14 @@ L_19:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   92	    } else {
+;  113	    } else {
+.LINE 113
+
 	JR	L_22
 L_21:
-;   93	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
+;  114	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
+.LINE 114
+
 	LD	BC,L__130
 	PUSH	BC
 	LD	BC,L__131
@@ -707,7 +1393,9 @@ L_21:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   94	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "14:00", "15:20");
+;  115	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "14:00", "15:20");
+.LINE 115
+
 	LD	BC,L__136
 	PUSH	BC
 	LD	BC,L__137
@@ -732,9 +1420,13 @@ L_21:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   95	    }
+;  116	    }
 L_22:
-;   96	    drawLesson(3 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Resurstid", "", "", "01:00", colorResurstid, textColorLight, "15:30", "16:30");
+.LINE 116
+
+;  117	    drawLesson(3 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Resurstid", "", "", "01:00", colorResurstid, textColorLight, "15:30", "16:30");
+.LINE 117
+
 	LD	BC,L__142
 	PUSH	BC
 	LD	BC,L__143
@@ -759,9 +1451,11 @@ L_22:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;   97	
-;   98	    //Fredag
-;   99	    drawLesson(4 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Kemi", "H331", "altla", "01:00", colorKemi, textColorDark, "09:50", "10:50");
+;  118	
+;  119	    //Fredag
+;  120	    drawLesson(4 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Kemi", "H331", "altla", "01:00", colorKemi, textColorDark, "09:50", "10:50");
+.LINE 120
+
 	LD	BC,L__148
 	PUSH	BC
 	LD	BC,L__149
@@ -786,7 +1480,9 @@ L_22:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  100	    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:00", "11:45");
+;  121	    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:00", "11:45");
+.LINE 121
+
 	LD	BC,L__154
 	PUSH	BC
 	LD	BC,L__155
@@ -811,7 +1507,9 @@ L_22:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  101	    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "01:10", colorFysik, textColorDark, "12:10", "13:20");
+;  122	    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "01:10", colorFysik, textColorDark, "12:10", "13:20");
+.LINE 122
+
 	LD	BC,L__160
 	PUSH	BC
 	LD	BC,L__161
@@ -836,7 +1534,9 @@ L_22:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  102	    drawLesson(4 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", "jormo", "01:00", colorEngelska, textColorDark, "13:40", "14:40");
+;  123	    drawLesson(4 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", "jormo", "01:00", colorEngelska, textColorDark, "13:40", "14:40");
+.LINE 123
+
 	LD	BC,L__166
 	PUSH	BC
 	LD	BC,L__167
@@ -861,7 +1561,9 @@ L_22:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  103	    drawLesson(4 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Matte", "H341", "drada", "01:00", colorMatte, textColorDark, "14:50", "15:50");
+;  124	    drawLesson(4 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Matte", "H341", "drada", "01:00", colorMatte, textColorDark, "14:50", "15:50");
+.LINE 124
+
 	LD	BC,L__172
 	PUSH	BC
 	LD	BC,L__173
@@ -885,30 +1587,289 @@ L_22:
 	CALL	_drawLesson
 	LD	IY,30
 	ADD	IY,SP
-;  104	
-;  105	    gfx_PrintStringXY(!weekB ? "Vecka A" : "Vecka B", LCD_WIDTH / 2 - 32, LCD_HEIGHT - lessonHeight / 2);
+	LD	SP,IY
+;  125	    
+;  126	    boot_GetDate(&day, &month, &year);
+.LINE 126
+
+	PEA	IX+-22
+	PEA	IX+-4
+	PEA	IX+-5
+	CALL	_boot_GetDate
+	POP	BC
+	POP	BC
+	POP	BC
+;  127	    sprintf(dayS, "%d", day);
+.LINE 127
+
+	LD	A,(IX+-5)
+	UEXT	HL
+	LD	L,A
+	PUSH	HL
+	LD	BC,L__178
+	PUSH	BC
+	LD	BC,(IX+-8)
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+;  128	    sprintf(monthS, "%d", month);
+.LINE 128
+
+	LD	A,(IX+-4)
+	UEXT	HL
+	LD	L,A
+	PUSH	HL
+	LD	BC,L__179
+	PUSH	BC
+	LD	BC,(IX+-11)
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+;  129	    sprintf(yearS, "%d", year);
+.LINE 129
+
+	LD	BC,(IX+-22)
+	CALL	__stoiu
+	PUSH	HL
+	LD	BC,L__180
+	PUSH	BC
+	LD	BC,(IX+-14)
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+;  130	    sprintf(weekS, "%d", getWeekNumber());
+.LINE 130
+
+	CALL	_getWeekNumber
+	UEXT	HL
+	LD	L,A
+	PUSH	HL
+	LD	BC,L__181
+	PUSH	BC
+	LD	BC,(IX+-17)
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+;  131	    
+;  132	    if(weekB == getWeekB()){
+.LINE 132
+
+	CALL	_getWeekB
+	LD	B,A
+	LD	A,(_weekB)
+	CP	A,B
+	JR	NZ,L_24
+;  133	        strcat(dateMsg, dayS);
+.LINE 133
+
+	LD	BC,(IX+-8)
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  134	        strcat(dateMsg, "/");
+.LINE 134
+
+	LD	BC,L__183
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  135	        strcat(dateMsg, monthS);
+.LINE 135
+
+	LD	BC,(IX+-11)
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  136	        strcat(dateMsg, "-");
+.LINE 136
+
+	LD	BC,L__184
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  137	        strcat(dateMsg, yearS);
+.LINE 137
+
+	LD	BC,(IX+-14)
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  138	        strcat(dateMsg, ", V: ");
+.LINE 138
+
+	LD	BC,L__185
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  139	        strcat(dateMsg, weekS);
+.LINE 139
+
+	LD	BC,(IX+-17)
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  140	        strcat(dateMsg, " : ");
+.LINE 140
+
+	LD	BC,L__186
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  141	    } else
+.LINE 141
+
+	JR	L_27
+L_24:
+;  142	        strcat(dateMsg, "Vecka ");
+.LINE 142
+
+	LD	BC,L__187
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+L_27:
+;  143	    if(!weekB)
+.LINE 143
+
 	LD	A,(_weekB)
 	OR	A,A
-	LD	SP,IY
-	JR	NZ,L_25
-	LD	BC,L__179
-	LD	(IX+-6),BC
-	JR	L_26
-L_25:
-	LD	BC,L__180
-	LD	(IX+-6),BC
+	JR	NZ,L_26
+;  144	        strcat(dateMsg, "A");
+.LINE 144
+
+	LD	BC,L__189
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+;  145	    else
+.LINE 145
+
+	JR	L_28
 L_26:
+;  146	        strcat(dateMsg, "B");
+.LINE 146
+
+	LD	BC,L__190
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_strcat
+	POP	BC
+	POP	BC
+L_28:
+;  147	
+;  148	    gfx_PrintStringXY(dateMsg, LCD_WIDTH / 2 - (gfx_GetStringWidth(dateMsg) / 2), LCD_HEIGHT - lessonHeight / 2);
+.LINE 148
+
 	LD	BC,224
 	PUSH	BC
-	LD	BC,128
+	LD	BC,(IX+-3)
 	PUSH	BC
-	LD	BC,(IX+-6)
+	CALL	_gfx_GetStringWidth
+	POP	BC
+	LD	A,1
+	CALL	__ishru_b
+	LD	BC,HL
+	LD	HL,160
+	OR	A,A
+	SBC	HL,BC
+	PUSH	HL
+	LD	BC,(IX+-3)
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;  106	}
+;  149	   
+;  150	    free(dateMsg);
+.LINE 150
+
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_free
+	POP	BC
+;  151	    memset(dateMsg, 0, sizeof(dateMsg));
+.LINE 151
+
+	LD	BC,3
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	CALL	_memset
+	POP	BC
+	POP	BC
+	POP	BC
+;  152	    free(dayS);
+.LINE 152
+
+	LD	BC,(IX+-8)
+	PUSH	BC
+	CALL	_free
+	POP	BC
+;  153	    free(monthS);
+.LINE 153
+
+	LD	BC,(IX+-11)
+	PUSH	BC
+	CALL	_free
+	POP	BC
+;  154	    free(yearS);
+.LINE 154
+
+	LD	BC,(IX+-14)
+	PUSH	BC
+	CALL	_free
+	POP	BC
+;  155	    free(weekS);
+.LINE 155
+
+	LD	BC,(IX+-17)
+	PUSH	BC
+	CALL	_free
+	POP	BC
+;  156	}
+.LINE 156
+
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -916,19 +1877,36 @@ L_26:
 
 ;**************************** _drawLessons ***************************
 ;Name                         Addr/Register   Size   Type
+;_free                               IMPORT  -----   function
+;_gfx_GetStringWidth                 IMPORT  -----   function
 ;_gfx_PrintStringXY                  IMPORT  -----   function
+;_strcat                             IMPORT  -----   function
+;_getWeekB                           IMPORT  -----   function
+;_getWeekNumber                      IMPORT  -----   function
+;_sprintf                            IMPORT  -----   function
+;_boot_GetDate                       IMPORT  -----   function
 ;_weekB                              STATIC      1   variable
 ;_drawLesson                         IMPORT  -----   function
 ;_gfx_SetColor                       IMPORT  -----   function
 ;_gfx_FillScreen                     IMPORT  -----   function
-;temp23                                IX-6      3   variable
-;temp16                                IX-3      3   variable
+;_memset                             IMPORT  -----   function
+;_malloc                             IMPORT  -----   function
+;year                                 IX-22      2   variable
+;temp16                               IX-20      3   variable
+;weekS                                IX-17      3   variable
+;yearS                                IX-14      3   variable
+;monthS                               IX-11      3   variable
+;dayS                                  IX-8      3   variable
+;day                                   IX-5      1   variable
+;month                                 IX-4      1   variable
+;dateMsg                               IX-3      3   variable
 
 
-; Stack Frame Size: 12 (bytes)
+; Stack Frame Size: 28 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
+.ENDFUNC "drawLessons",156,"_drawLessons"
 	SEGMENT STRSECT
 L__13:
 	DB	"09:30"
@@ -1406,25 +2384,173 @@ L__176:
 L__177:
 	DB	"Matte"
 	DB	0
+L__178:
+	DB	"%d"
+	DB	0
 L__179:
-	DB	"Vecka A"
+	DB	"%d"
 	DB	0
 L__180:
-	DB	"Vecka B"
+	DB	"%d"
+	DB	0
+L__181:
+	DB	"%d"
+	DB	0
+L__183:
+	DB	"/"
+	DB	0
+L__184:
+	DB	"-"
+	DB	0
+L__185:
+	DB	", V: "
+	DB	0
+L__186:
+	DB	" : "
+	DB	0
+L__187:
+	DB	"Vecka "
+	DB	0
+L__189:
+	DB	"A"
+	DB	0
+L__190:
+	DB	"B"
 	DB	0
 	SEGMENT CODE
-;  107	
-;  108	void drawLesson(int16_t x, int16_t y, char *name, char *location, char *teacher, char *length, int8_t lessonColor, int8_t textColor, char *timeFrom, char *timeTo){
+;  157	
+;  158	void drawLesson(int16_t x, int16_t y, char *name, char *location, char *teacher, char *length, int8_t lessonColor, int8_t textColor, char *timeFrom, char *timeTo){
 _drawLesson:
-	LD	HL,-4
-	CALL	__frameset
-;  109	    gfx_SetColor(lessonColor);
+.DEFINE "_drawLesson"
+
+.VALUE _drawLesson
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "drawLesson",158,"_drawLesson"
+
+.LINE 158
+
+.DEFINE "x"
+
+.CLASS 65
+
+.VALUE 6
+
+.TYPE 3
+
+.ENDEF
+
+.DEFINE "y"
+
+.CLASS 65
+
+.VALUE 9
+
+.TYPE 3
+
+.ENDEF
+
+.DEFINE "name"
+
+.CLASS 65
+
+.VALUE 12
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "location"
+
+.CLASS 65
+
+.VALUE 15
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "teacher"
+
+.CLASS 65
+
+.VALUE 18
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "length"
+
+.CLASS 65
+
+.VALUE 21
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "lessonColor"
+
+.CLASS 65
+
+.VALUE 24
+
+.TYPE 2
+
+.ENDEF
+
+.DEFINE "textColor"
+
+.CLASS 65
+
+.VALUE 27
+
+.TYPE 2
+
+.ENDEF
+
+.DEFINE "timeFrom"
+
+.CLASS 65
+
+.VALUE 30
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "timeTo"
+
+.CLASS 65
+
+.VALUE 33
+
+.TYPE 34
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+	DEC	SP
+;  159	    gfx_SetColor(lessonColor);
+.LINE 159
+
 	LD	C,(IX+24)
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  110	    gfx_FillRectangle(x, y, lessonWidth, lessonHeight);
+;  160	    gfx_FillRectangle(x, y, lessonWidth, lessonHeight);
+.LINE 160
+
 	LD	BC,32
 	PUSH	BC
 	LD	BC,64
@@ -1440,12 +2566,16 @@ _drawLesson:
 	POP	BC
 	POP	BC
 	POP	BC
-;  111	    gfx_SetColor(lessonBorderColor);
+;  161	    gfx_SetColor(lessonBorderColor);
+.LINE 161
+
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  112	    gfx_Rectangle(x, y, lessonWidth, lessonHeight);
+;  162	    gfx_Rectangle(x, y, lessonWidth, lessonHeight);
+.LINE 162
+
 	LD	BC,32
 	PUSH	BC
 	LD	BC,64
@@ -1461,40 +2591,53 @@ _drawLesson:
 	POP	BC
 	POP	BC
 	POP	BC
-;  113	    gfx_SetTextTransparentColor(textColorTransparent);
+;  163	    gfx_SetTextTransparentColor(textColorTransparent);
+.LINE 163
+
 	LD	BC,254
 	PUSH	BC
 	CALL	_gfx_SetTextTransparentColor
 	POP	BC
-;  114	    gfx_SetTextBGColor(textColorTransparent);
+;  164	    gfx_SetTextBGColor(textColorTransparent);
+.LINE 164
+
 	LD	BC,254
 	PUSH	BC
 	CALL	_gfx_SetTextBGColor
 	POP	BC
-;  115	    gfx_SetTextFGColor(textColor);
+;  165	    gfx_SetTextFGColor(textColor);
+.LINE 165
+
 	LD	C,(IX+27)
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-;  116	    switch (lessonInfo){
+;  166	    switch (lessonInfo){
+.LINE 166
+
 	LD	HL,(_lessonInfo)
-	CALL	__seqcase
-L__182:
+	CALL	__seqcaseD
+	JP	(HL)
+L__192:
 	DW	3
 	DW	0
 	DB	0
-	DW24	L_28	
-
-	DW24	L_29	
-
 	DW24	L_30	
 
 	DW24	L_31	
 
-;  117	        case NameLocation:
-L_28:
-;  118	            gfx_PrintStringXY(name, x + 2, y + 2);
+	DW24	L_32	
+
+	DW24	L_33	
+
+;  167	        case NameLocation:
+L_30:
+.LINE 167
+
+;  168	            gfx_PrintStringXY(name, x + 2, y + 2);
+.LINE 168
+
 	LD	BC,(IX+9)
 	CALL	__stoi
 	INC	HL
@@ -1511,18 +2654,20 @@ L_28:
 	POP	BC
 	POP	BC
 	POP	BC
-;  119	            gfx_PrintStringXY(location, x + lessonWidth - gfx_GetStringWidth(location) - 2, y + lessonHeight - 10);
+;  169	            gfx_PrintStringXY(location, x + lessonWidth - gfx_GetStringWidth(location) - 2, y + lessonHeight - 10);
+.LINE 169
+
 	LD	BC,(IX+9)
 	CALL	__stoi
 	LD	IY,HL
 	LEA	BC,IY+22
 	PUSH	BC
 	LD	BC,(IX+6)
-	LD	DE,(IX+15)
-	PUSH	DE
 	CALL	__stoi
 	LD	IY,HL
 	LEA	DE,IY+64
+	LD	BC,(IX+15)
+	PUSH	BC
 	LD	(IX+-3),DE
 	LD	(IX+-4),D
 	CALL	_gfx_GetStringWidth
@@ -1542,11 +2687,17 @@ L_28:
 	POP	BC
 	POP	BC
 	POP	BC
-;  120	            break;
-	JR	L_31
-;  121	        case TimeStartEnd:
-L_29:
-;  122	            gfx_PrintStringXY(timeFrom, x + 2, y + 2);
+;  170	            break;
+.LINE 170
+
+	JR	L_33
+;  171	        case TimeStartEnd:
+L_31:
+.LINE 171
+
+;  172	            gfx_PrintStringXY(timeFrom, x + 2, y + 2);
+.LINE 172
+
 	LD	BC,(IX+9)
 	CALL	__stoi
 	INC	HL
@@ -1563,18 +2714,20 @@ L_29:
 	POP	BC
 	POP	BC
 	POP	BC
-;  123	            gfx_PrintStringXY(timeTo, x + lessonWidth - gfx_GetStringWidth(timeTo) - 2, y + lessonHeight - 10);
+;  173	            gfx_PrintStringXY(timeTo, x + lessonWidth - gfx_GetStringWidth(timeTo) - 2, y + lessonHeight - 10);
+.LINE 173
+
 	LD	BC,(IX+9)
 	CALL	__stoi
 	LD	IY,HL
 	LEA	BC,IY+22
 	PUSH	BC
 	LD	BC,(IX+6)
-	LD	DE,(IX+33)
-	PUSH	DE
 	CALL	__stoi
 	LD	IY,HL
 	LEA	DE,IY+64
+	LD	BC,(IX+33)
+	PUSH	BC
 	LD	(IX+-3),DE
 	LD	(IX+-4),D
 	CALL	_gfx_GetStringWidth
@@ -1594,11 +2747,17 @@ L_29:
 	POP	BC
 	POP	BC
 	POP	BC
-;  124	            break;
-	JR	L_31
-;  125	        case TeacherLength:
-L_30:
-;  126	            gfx_PrintStringXY(teacher, x + 2, y + 2);
+;  174	            break;
+.LINE 174
+
+	JR	L_33
+;  175	        case TeacherLength:
+L_32:
+.LINE 175
+
+;  176	            gfx_PrintStringXY(teacher, x + 2, y + 2);
+.LINE 176
+
 	LD	BC,(IX+9)
 	CALL	__stoi
 	INC	HL
@@ -1615,18 +2774,20 @@ L_30:
 	POP	BC
 	POP	BC
 	POP	BC
-;  127	            gfx_PrintStringXY(length, x + lessonWidth - gfx_GetStringWidth(length) - 2, y + lessonHeight - 10);
+;  177	            gfx_PrintStringXY(length, x + lessonWidth - gfx_GetStringWidth(length) - 2, y + lessonHeight - 10);
+.LINE 177
+
 	LD	BC,(IX+9)
 	CALL	__stoi
 	LD	IY,HL
 	LEA	BC,IY+22
 	PUSH	BC
 	LD	BC,(IX+6)
-	LD	DE,(IX+21)
-	PUSH	DE
 	CALL	__stoi
 	LD	IY,HL
 	LEA	DE,IY+64
+	LD	BC,(IX+21)
+	PUSH	BC
 	LD	(IX+-3),DE
 	LD	(IX+-4),D
 	CALL	_gfx_GetStringWidth
@@ -1646,10 +2807,12 @@ L_30:
 	POP	BC
 	POP	BC
 	POP	BC
-;  128	            break;
-;  129	    }
-;  130	}
-L_31:
+;  178	            break;
+;  179	    }
+;  180	}
+L_33:
+.LINE 180
+
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -1682,70 +2845,127 @@ L_31:
 ;       Spill Code: 0 (instruction)
 
 
-;  131	
-;  132	enum LessonInfo nextMode(enum LessonInfo currentLessonInfo, bool up) {
+.ENDFUNC "drawLesson",180,"_drawLesson"
+;  181	
+;  182	enum LessonInfo nextMode(enum LessonInfo currentLessonInfo, bool up) {
 _nextMode:
-	LD	HL,-9
-	CALL	__frameset
-;  133	    switch (currentLessonInfo){
+.DEFINE "_nextMode"
+
+.VALUE _nextMode
+
+.CLASS 2
+
+.TYPE 68
+
+.ENDEF
+
+.BEGFUNC "nextMode",182,"_nextMode"
+
+.LINE 182
+
+.DEFINE "currentLessonInfo"
+
+.CLASS 65
+
+.VALUE 6
+
+.TYPE 4
+
+.ENDEF
+
+.DEFINE "up"
+
+.CLASS 65
+
+.VALUE 9
+
+.TYPE 12
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+	PUSH	BC
+	PUSH	BC
+;  183	    switch (currentLessonInfo){
+.LINE 183
+
 	LD	HL,(IX+6)
-	CALL	__case8
-L__184:
+	CALL	__case8D
+	JP	(HL)
+L__194:
 	DW	2
 	DB	0
-	DW24	L_32	
+	DW24	L_34	
 
 	DB	1
-	DW24	L_37	
+	DW24	L_39	
 
-	DW24	L_42	
+	DW24	L_44	
 
-;  134	        case NameLocation:
-L_32:
-;  135	            return up ? TimeStartEnd : TeacherLength;
+;  184	        case NameLocation:
+L_34:
+.LINE 184
+
+;  185	            return up ? TimeStartEnd : TeacherLength;
+.LINE 185
+
 	LD	A,(IX+9)
 	OR	A,A
-	JR	Z,L_35
+	JR	Z,L_37
 	LD	BC,1
 	LD	(IX+-3),BC
-	JR	L_36
-L_35:
-	LD	BC,2
-	LD	(IX+-3),BC
-L_36:
-	LD	HL,(IX+-3)
-	JR	L_47
-;  136	        case TimeStartEnd:
+	JR	L_38
 L_37:
-;  137	            return up ? TeacherLength : NameLocation;
+	LD	BC,2
+	LD	(IX+-3),BC
+L_38:
+	LD	HL,(IX+-3)
+	JR	L_49
+;  186	        case TimeStartEnd:
+L_39:
+.LINE 186
+
+;  187	            return up ? TeacherLength : NameLocation;
+.LINE 187
+
 	LD	A,(IX+9)
 	OR	A,A
-	JR	Z,L_40
+	JR	Z,L_42
 	LD	BC,2
 	LD	(IX+-6),BC
-	JR	L_41
-L_40:
+	JR	L_43
+L_42:
 	LD	BC,0
 	LD	(IX+-6),BC
-L_41:
+L_43:
 	LD	HL,(IX+-6)
-	JR	L_47
-;  138	        default:
-L_42:
-;  139	            return up ? NameLocation : TimeStartEnd;
+	JR	L_49
+;  188	        default:
+L_44:
+.LINE 188
+
+;  189	            return up ? NameLocation : TimeStartEnd;
+.LINE 189
+
 	LD	A,(IX+9)
 	OR	A,A
-	JR	Z,L_45
+	JR	Z,L_47
 	LD	BC,0
 	LD	(IX+-9),BC
-	JR	L_46
-L_45:
+	JR	L_48
+L_47:
 	LD	BC,1
 	LD	(IX+-9),BC
-L_46:
+L_48:
 	LD	HL,(IX+-9)
-;  140	    }
-L_47:
+;  190	    }
+;  191	}
+L_49:
+.LINE 191
+
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -1753,9 +2973,9 @@ L_47:
 
 ;**************************** _nextMode ***************************
 ;Name                         Addr/Register   Size   Type
-;temp43                                IX-9      3   variable
-;temp38                                IX-6      3   variable
-;temp33                                IX-3      3   variable
+;temp45                                IX-9      3   variable
+;temp40                                IX-6      3   variable
+;temp35                                IX-3      3   variable
 ;up                                    IX+9      1   parameter
 ;currentLessonInfo                     IX+6      3   parameter
 
@@ -1764,6 +2984,616 @@ L_47:
 ;       Spill Code: 0 (instruction)
 
 
+.ENDFUNC "nextMode",191,"_nextMode"
+;  192	
+;  193	uint8_t getWeekNumber(){
+_getWeekNumber:
+.DEFINE "_getWeekNumber"
+
+.VALUE _getWeekNumber
+
+.CLASS 2
+
+.TYPE 76
+
+.ENDEF
+
+.BEGFUNC "getWeekNumber",193,"_getWeekNumber"
+
+.LINE 193
+
+.DEFINE "day"
+
+.CLASS 65
+
+.VALUE -1
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "month"
+
+.CLASS 65
+
+.VALUE -2
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "year"
+
+.CLASS 65
+
+.VALUE -7
+
+.TYPE 13
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+	PUSH	BC
+	DEC	SP
+;  194	    uint8_t day;
+;  195	    uint8_t month;
+;  196	    uint16_t year;
+;  197	    boot_GetDate(&day, &month, &year);
+.LINE 197
+
+	PEA	IX+-7
+	PEA	IX+-2
+	PEA	IX+-1
+	CALL	_boot_GetDate
+	POP	BC
+	POP	BC
+	POP	BC
+;  198	    //day = 1;
+;  199	    //month = 1;
+;  200	    //year = 2019;
+;  201	    if(year == 2019 && month <= 12){
+.LINE 201
+
+	LD.LIS	BC,2019
+	LD	HL,(IX+-7)
+	OR	A,A
+	SBC.SIS	HL,BC
+	JR	NZ,L_69
+	LD	A,12
+	CP	A,(IX+-2)
+	JR	C,L_69
+;  202	        switch(month){
+.LINE 202
+
+	LD	A,(IX+-2)
+	UEXT	HL
+	LD	L,A
+	CALL	__seqcaseD
+	JP	(HL)
+L__201:
+	DW	12
+	DW	1
+	DB	0
+	DW24	L_62	
+
+	DW24	L_61	
+
+	DW24	L_60	
+
+	DW24	L_59	
+
+	DW24	L_58	
+
+	DW24	L_57	
+
+	DW24	L_56	
+
+	DW24	L_55	
+
+	DW24	L_54	
+
+	DW24	L_53	
+
+	DW24	L_52	
+
+	DW24	L_51	
+
+	DW24	L_67	
+
+;  203	            case 12:
+L_51:
+.LINE 203
+
+;  204	                day += 30;
+.LINE 204
+
+	LD	A,(IX+-1)
+	ADD	A,30
+	LD	(IX+-1),A
+;  205	            case 11:
+L_52:
+.LINE 205
+
+;  206	                day += 31;
+.LINE 206
+
+	LD	A,(IX+-1)
+	ADD	A,31
+	LD	(IX+-1),A
+;  207	            case 10:
+L_53:
+.LINE 207
+
+;  208	                day += 30;
+.LINE 208
+
+	LD	A,(IX+-1)
+	ADD	A,30
+	LD	(IX+-1),A
+;  209	            case 9:
+L_54:
+.LINE 209
+
+;  210	                day += 31;
+.LINE 210
+
+	LD	A,(IX+-1)
+	ADD	A,31
+	LD	(IX+-1),A
+;  211	            case 8:
+L_55:
+.LINE 211
+
+;  212	                day += 31;
+.LINE 212
+
+	LD	A,(IX+-1)
+	ADD	A,31
+	LD	(IX+-1),A
+;  213	            case 7:
+L_56:
+.LINE 213
+
+;  214	                day += 30;
+.LINE 214
+
+	LD	A,(IX+-1)
+	ADD	A,30
+	LD	(IX+-1),A
+;  215	            case 6:
+L_57:
+.LINE 215
+
+;  216	                day += 31;
+.LINE 216
+
+	LD	A,(IX+-1)
+	ADD	A,31
+	LD	(IX+-1),A
+;  217	            case 5:
+L_58:
+.LINE 217
+
+;  218	                day += 30;
+.LINE 218
+
+	LD	A,(IX+-1)
+	ADD	A,30
+	LD	(IX+-1),A
+;  219	            case 4:
+L_59:
+.LINE 219
+
+;  220	                day += 31;
+.LINE 220
+
+	LD	A,(IX+-1)
+	ADD	A,31
+	LD	(IX+-1),A
+;  221	            case 3:
+L_60:
+.LINE 221
+
+;  222	                day += 28;
+.LINE 222
+
+	LD	A,(IX+-1)
+	ADD	A,28
+	LD	(IX+-1),A
+;  223	            case 2:
+L_61:
+.LINE 223
+
+;  224	                day += 31;
+.LINE 224
+
+	LD	A,(IX+-1)
+	ADD	A,31
+	LD	(IX+-1),A
+;  225	            case 1:
+L_62:
+.LINE 225
+
+;  226	                day += 0;
+.LINE 226
+
+	LD	A,(IX+-1)
+	LD	(IX+-1),A
+;  227	        }
+L_67:
+.LINE 227
+
+;  228	        return day / 7 + (day % 7 == 1 ? 0 : 1);
+.LINE 228
+
+	LD	A,(IX+-1)
+	UEXT	HL
+	LD	L,A
+	LD	BC,7
+	CALL	__irems
+	LD	BC,1
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_65
+	LD	BC,0
+	LD	(IX+-5),BC
+	JR	L_66
+L_65:
+	LD	(IX+-5),BC
+L_66:
+	LD	A,(IX+-1)
+	UEXT	HL
+	LD	L,A
+	LD	BC,7
+	CALL	__idivs
+	LD	BC,(IX+-5)
+	ADD	HL,BC
+	LD	A,L
+	JR	L_70
+;  229	    } else {
+L_69:
+.LINE 229
+
+;  230	        return 101;
+.LINE 230
+
+	LD	A,101
+;  231	    }
+;  232	}
+L_70:
+.LINE 232
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _getWeekNumber ***************************
+;Name                         Addr/Register   Size   Type
+;_boot_GetDate                       IMPORT  -----   function
+;year                                  IX-7      2   variable
+;temp63                                IX-5      3   variable
+;month                                 IX-2      1   variable
+;day                                   IX-1      1   variable
+
+
+; Stack Frame Size: 13 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "getWeekNumber",232,"_getWeekNumber"
+;  233	
+;  234	bool getWeekB() {
+_getWeekB:
+.DEFINE "_getWeekB"
+
+.VALUE _getWeekB
+
+.CLASS 2
+
+.TYPE 76
+
+.ENDEF
+
+.BEGFUNC "getWeekB",234,"_getWeekB"
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;  235	    switch (getWeekNumber()){
+.LINE 235
+
+	CALL	_getWeekNumber
+	UEXT	HL
+	LD	L,A
+	CALL	__seqcaseD
+	JP	(HL)
+L__204:
+	DW	24
+	DW	1
+	DB	0
+	DW24	L_71	
+
+	DW24	L_72	
+
+	DW24	L_73	
+
+	DW24	L_74	
+
+	DW24	L_75	
+
+	DW24	L_76	
+
+	DW24	L_93	
+
+	DW24	L_77	
+
+	DW24	L_78	
+
+	DW24	L_79	
+
+	DW24	L_80	
+
+	DW24	L_81	
+
+	DW24	L_82	
+
+	DW24	L_83	
+
+	DW24	L_84	
+
+	DW24	L_93	
+
+	DW24	L_85	
+
+	DW24	L_86	
+
+	DW24	L_87	
+
+	DW24	L_88	
+
+	DW24	L_89	
+
+	DW24	L_90	
+
+	DW24	L_91	
+
+	DW24	L_92	
+
+	DW24	L_93	
+
+;  236	        case 1:
+L_71:
+.LINE 236
+
+;  237	            return false;
+.LINE 237
+
+	XOR	A,A
+	JR	L_94
+;  238	        case 2:
+L_72:
+.LINE 238
+
+;  239	            return true;
+.LINE 239
+
+	LD	A,1
+	JR	L_94
+;  240	        case 3:
+L_73:
+.LINE 240
+
+;  241	            return false;
+.LINE 241
+
+	XOR	A,A
+	JR	L_94
+;  242	        case 4:
+L_74:
+.LINE 242
+
+;  243	            return true;
+.LINE 243
+
+	LD	A,1
+	JR	L_94
+;  244	        case 5:
+L_75:
+.LINE 244
+
+;  245	            return false;
+.LINE 245
+
+	XOR	A,A
+	JR	L_94
+;  246	        case 6:
+L_76:
+.LINE 246
+
+;  247	            return true;
+.LINE 247
+
+	LD	A,1
+	JR	L_94
+;  248	        // V7 Lov
+;  249	        case 8:
+L_77:
+.LINE 249
+
+;  250	            return false;
+.LINE 250
+
+	XOR	A,A
+	JR	L_94
+;  251	        case 9:
+L_78:
+.LINE 251
+
+;  252	            return true;
+.LINE 252
+
+	LD	A,1
+	JR	L_94
+;  253	        case 10:
+L_79:
+.LINE 253
+
+;  254	            return false;
+.LINE 254
+
+	XOR	A,A
+	JR	L_94
+;  255	        case 11:
+L_80:
+.LINE 255
+
+;  256	            return true;
+.LINE 256
+
+	LD	A,1
+	JR	L_94
+;  257	        case 12:
+L_81:
+.LINE 257
+
+;  258	            return false;
+.LINE 258
+
+	XOR	A,A
+	JR	L_94
+;  259	        case 13:
+L_82:
+.LINE 259
+
+;  260	            return true;
+.LINE 260
+
+	LD	A,1
+	JR	L_94
+;  261	        case 14:
+L_83:
+.LINE 261
+
+;  262	            return false;
+.LINE 262
+
+	XOR	A,A
+	JR	L_94
+;  263	        case 15:
+L_84:
+.LINE 263
+
+;  264	            return true;
+.LINE 264
+
+	LD	A,1
+	JR	L_94
+;  265	        // V16 Lov
+;  266	        case 17:
+L_85:
+.LINE 266
+
+;  267	            return false;
+.LINE 267
+
+	XOR	A,A
+	JR	L_94
+;  268	        case 18:
+L_86:
+.LINE 268
+
+;  269	            return true;
+.LINE 269
+
+	LD	A,1
+	JR	L_94
+;  270	        case 19:
+L_87:
+.LINE 270
+
+;  271	            return false;
+.LINE 271
+
+	XOR	A,A
+	JR	L_94
+;  272	        case 20:
+L_88:
+.LINE 272
+
+;  273	            return true;
+.LINE 273
+
+	LD	A,1
+	JR	L_94
+;  274	        case 21:
+L_89:
+.LINE 274
+
+;  275	            return false;
+.LINE 275
+
+	XOR	A,A
+	JR	L_94
+;  276	        case 22:
+L_90:
+.LINE 276
+
+;  277	            return true;
+.LINE 277
+
+	LD	A,1
+	JR	L_94
+;  278	        case 23:
+L_91:
+.LINE 278
+
+;  279	            return false;
+.LINE 279
+
+	XOR	A,A
+	JR	L_94
+;  280	        case 24:
+L_92:
+.LINE 280
+
+;  281	            return true;
+.LINE 281
+
+	LD	A,1
+	JR	L_94
+;  282	    }
+L_93:
+.LINE 282
+
+;  283	    return false;
+.LINE 283
+
+	XOR	A,A
+L_94:
+.LINE 284
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _getWeekB ***************************
+;Name                         Addr/Register   Size   Type
+;_getWeekNumber                      IMPORT  -----   function
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "getWeekB",284,"_getWeekB"
+	XREF _strcat:ROM
+	XREF _memset:ROM
+	XREF _sprintf:ROM
 	XREF _gfx_GetStringWidth:ROM
 	XREF _gfx_SetTextTransparentColor:ROM
 	XREF _gfx_SetTextBGColor:ROM
@@ -1777,11 +3607,19 @@ L_47:
 	XREF _gfx_SetColor:ROM
 	XREF _gfx_End:ROM
 	XREF _gfx_Begin:ROM
+	XREF _free:ROM
+	XREF _malloc:ROM
 	XREF _os_GetCSC:ROM
+	XREF _boot_GetDate:ROM
+	XREF __idivs:ROM
+	XREF __irems:ROM
 	XREF __stoi:ROM
-	XREF __frameset:ROM
-	XREF __case8:ROM
-	XREF __seqcase:ROM
+	XREF __stoiu:ROM
+	XREF __case8D:ROM
+	XREF __seqcaseD:ROM
+	XREF __ishru_b:ROM
+	XDEF _getWeekB
+	XDEF _getWeekNumber
 	XDEF _nextMode
 	XDEF _drawLesson
 	XDEF _drawLessons

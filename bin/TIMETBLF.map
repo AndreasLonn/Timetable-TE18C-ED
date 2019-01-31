@@ -1,53 +1,38 @@
 Segment  Base   Top    High   Length
 -------- ------ ------ ------ -------
-bss      D031F6 D031FD D13FD6      7h
+bss      D031F6 D031F6 D13FD6      0h
 header   D1A87F D1A882             3h
 icon     D1A882 D1A882             0h
 launcher D1A882 D1A8DA            58h
-libs     D1A8DA D1A917            3Dh
-startup  D1A917 D1A952            3Bh
-cleanup  D1A952 D1A966            14h
-exit     D1A966 D1A96C             6h
-code     D1A96C D1B930           FC4h
-data     D1B930 D1B958            28h
-strsect  D1B958 D1BD1C           3C4h
-text     D1BD1C D1BD1C             0h
+libs     D1A8DA D1A913            39h
+startup  D1A913 D1A94E            3Bh
+cleanup  D1A94E D1A962            14h
+exit     D1A962 D1A968             6h
+code     D1A968 D1B387           A1Fh
+data     D1B387 D1B3AC            25h
+strsect  D1B3AC D1B75B           3AFh
+text     D1B75B D1B75B             0h
 
 Label                          Value
 ----------------------------   ------
 __findlibload                = D1A882
-__ccleanup                   = D1A952
+__ccleanup                   = D1A94E
 _errno                       = D008DC
 _init                        = D1A882
-_exit                        = D1A968
-__exit                       = D1A944
-__exitsp                     = D1A944
-__errsp                      = D1A944
-_getWeekB                    = D1B656
-_getWeekNumber               = D1B54B
-_nextMode                    = D1B4D6
-_drawLesson                  = D1B302
-_drawLessons                 = D1AA2E
-_main                        = D1A96C
-_weekB                       = D031F6
-_lessonInfo                  = D1B952
-__case8D                     = 000128
-__frameset                   = D1B70F
-_free                        = D1B71D
-__icmpzero                   = D1B81B
-__idivs                      = 00013C
-__irems                      = 00016C
-__ishru_b                    = 000184
-__ishru_b                    = 000188
-_malloc                      = D1B851
-__alloc_base                 = D031F7
-_memset                      = D1B8F9
-__s_sbrk                     = D1B910
-__seqcaseD                   = 000214
-_sprintf                     = 0000BC
+_exit                        = D1A964
+__exit                       = D1A940
+__exitsp                     = D1A940
+__errsp                      = D1A940
+_weekB                       = D1B34A
+_nextMode                    = D1B2DA
+_drawLesson                  = D1B10A
+_drawLessons                 = D1A9F9
+_main                        = D1A968
+_lessonInfo                  = D1B3A9
+__case8                      = 000124
+__frameset                   = D1B379
+__seqcase                    = 000210
 __stoi                       = 000260
-__stoiu                      = 000264
-_strcat                      = 0000C0
 _boot_GetBootMajorVer        = 000080
 _boot_GetHardwareVer         = 000084
 _boot_GetBootMinorVer        = 00008C
@@ -160,16 +145,15 @@ _asm_DisableAPD              = 021134
 _asm_EnableAPD               = 021138
 _asm_DrawStatusBar           = 021A3C
 _asm_ArcChk                  = 022040
-_gfx_Begin                   = D1A8E3
-_gfx_End                     = D1A8E7
-_gfx_SetColor                = D1A8EB
-_gfx_FillScreen              = D1A8EF
-_gfx_SetDraw                 = D1A8F3
-_gfx_SwapDraw                = D1A8F7
-_gfx_PrintStringXY           = D1A8FB
-_gfx_SetTextBGColor          = D1A8FF
-_gfx_SetTextFGColor          = D1A903
-_gfx_SetTextTransparentColor = D1A907
-_gfx_GetStringWidth          = D1A90B
-_gfx_Rectangle               = D1A90F
-_gfx_FillRectangle           = D1A913
+_gfx_End                     = D1A8E3
+_gfx_SetColor                = D1A8E7
+_gfx_FillScreen              = D1A8EB
+_gfx_SetDraw                 = D1A8EF
+_gfx_SwapDraw                = D1A8F3
+_gfx_PrintStringXY           = D1A8F7
+_gfx_SetTextBGColor          = D1A8FB
+_gfx_SetTextFGColor          = D1A8FF
+_gfx_SetTextTransparentColor = D1A903
+_gfx_GetStringWidth          = D1A907
+_gfx_Rectangle               = D1A90B
+_gfx_FillRectangle           = D1A90F
