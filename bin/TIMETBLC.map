@@ -10,8 +10,8 @@ cleanup  D1A970 D1A984            14h
 exit     D1A984 D1A98A             6h
 code     D1A98A D1BC18          128Eh
 data     D1BC18 D1BC40            28h
-strsect  D1BC40 D1C1B3           573h
-text     D1C1B3 D1C1B3             0h
+strsect  D1BC40 D1C1AC           56Ch
+text     D1C1AC D1C1AC             0h
 
 Label                          Value
 ----------------------------   ------

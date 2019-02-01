@@ -48,7 +48,7 @@ _showingHelp:
 ;   32	#define modeREAD "r"
 ;   33	#define modeWRITE "w"
 ;   34	
-;   35	#define classBvarName "classBvar"
+;   35	#define classBvarName "classB"
 ;   36	
 ;   37	enum LessonInfo { NameLocation, TimeStartEnd, TeacherLength };
 ;   38	enum LessonInfo lessonInfo = NameLocation;
@@ -322,13 +322,13 @@ L__0:
 	DB	"r"
 	DB	0
 L__1:
-	DB	"classBvar"
+	DB	"classB"
 	DB	0
 L__16:
 	DB	"w"
 	DB	0
 L__17:
-	DB	"classBvar"
+	DB	"classB"
 	DB	0
 	SEGMENT CODE
 ;  104	void drawLessons(void){
@@ -1317,7 +1317,7 @@ L_37:
 	CALL	_strcat
 	POP	BC
 	POP	BC
-;  178	        strcat(dateMsg, ", V: ");
+;  178	        strcat(dateMsg, ", W: ");
 	LD	BC,L__220
 	PUSH	BC
 	LD	BC,(IX+-3)
@@ -1344,7 +1344,7 @@ L_37:
 ;  181	    } else
 	JR	L_42
 L_39:
-;  182	        strcat(dateMsg, "Vecka ");
+;  182	        strcat(dateMsg, "Week ");
 	LD	BC,L__222
 	PUSH	BC
 	LD	BC,(IX+-3)
@@ -2065,13 +2065,13 @@ L__219:
 	DB	"-"
 	DB	0
 L__220:
-	DB	", V: "
+	DB	", W: "
 	DB	0
 L__221:
 	DB	" : "
 	DB	0
 L__222:
-	DB	"Vecka "
+	DB	"Week "
 	DB	0
 L__224:
 	DB	"A"

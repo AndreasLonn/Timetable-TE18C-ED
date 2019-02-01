@@ -32,7 +32,7 @@
 #define modeREAD "r"
 #define modeWRITE "w"
 
-#define classBvarName "classBvar"
+#define classBvarName "classB"
 
 enum LessonInfo { NameLocation, TimeStartEnd, TeacherLength };
 enum LessonInfo lessonInfo = NameLocation;
