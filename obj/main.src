@@ -333,7 +333,7 @@ L__17:
 	SEGMENT CODE
 ;  104	void drawLessons(void){
 _drawLessons:
-	LD	HL,-22
+	LD	HL,-19
 	CALL	__frameset
 ;  105	    uint8_t day;
 ;  106	    uint8_t month;
@@ -669,35 +669,25 @@ _drawLessons:
 	CALL	_drawLesson
 	LD	IY,30
 	ADD	IY,SP
+	LD	SP,IY
 ;  134	
 ;  135	    //Onsdag
-;  136	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", !weekB ? "H341" : "F206", "drada", "01:10", colorMatte, textColorDark, "09:25", "10:35");
-	LD	A,(_weekB)
-	OR	A,A
-	LD	SP,IY
-	JR	NZ,L_28
-	LD	BC,L__88
-	LD	(IX+-20),BC
-	JR	L_29
-L_28:
-	LD	BC,L__89
-	LD	(IX+-20),BC
-L_29:
-	LD	BC,L__90
+;  136	    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", "H341", "drada", "01:10", colorMatte, textColorDark, "09:25", "10:35");
+	LD	BC,L__87
 	PUSH	BC
-	LD	BC,L__91
+	LD	BC,L__88
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
+	LD	BC,L__89
+	PUSH	BC
+	LD	BC,L__90
+	PUSH	BC
+	LD	BC,L__91
+	PUSH	BC
 	LD	BC,L__92
-	PUSH	BC
-	LD	BC,L__93
-	PUSH	BC
-	LD	BC,(IX+-20)
-	PUSH	BC
-	LD	BC,L__94
 	PUSH	BC
 	LD	BC,34
 	PUSH	BC
@@ -708,21 +698,21 @@ L_29:
 	ADD	IY,SP
 	LD	SP,IY
 ;  137	    drawLesson(2 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "00:50", colorFysik, textColorDark, "10:40", "11:30");
-	LD	BC,L__95
+	LD	BC,L__93
 	PUSH	BC
-	LD	BC,L__96
+	LD	BC,L__94
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,47
 	PUSH	BC
+	LD	BC,L__95
+	PUSH	BC
+	LD	BC,L__96
+	PUSH	BC
 	LD	BC,L__97
 	PUSH	BC
 	LD	BC,L__98
-	PUSH	BC
-	LD	BC,L__99
-	PUSH	BC
-	LD	BC,L__100
 	PUSH	BC
 	LD	BC,68
 	PUSH	BC
@@ -733,21 +723,21 @@ L_29:
 	ADD	IY,SP
 	LD	SP,IY
 ;  138	    drawLesson(2 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:30", "12:15");
-	LD	BC,L__101
+	LD	BC,L__99
 	PUSH	BC
-	LD	BC,L__102
+	LD	BC,L__100
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,224
 	PUSH	BC
+	LD	BC,L__101
+	PUSH	BC
+	LD	BC,L__102
+	PUSH	BC
 	LD	BC,L__103
 	PUSH	BC
 	LD	BC,L__104
-	PUSH	BC
-	LD	BC,L__105
-	PUSH	BC
-	LD	BC,L__106
 	PUSH	BC
 	LD	BC,102
 	PUSH	BC
@@ -760,21 +750,21 @@ L_29:
 ;  139	
 ;  140	    //Tordag
 ;  141	    drawLesson(3 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Matte", "F206", "drada", "01:00", colorMatte, textColorDark, "08:00", "09:00");
-	LD	BC,L__107
+	LD	BC,L__105
 	PUSH	BC
-	LD	BC,L__108
+	LD	BC,L__106
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
+	LD	BC,L__107
+	PUSH	BC
+	LD	BC,L__108
+	PUSH	BC
 	LD	BC,L__109
 	PUSH	BC
 	LD	BC,L__110
-	PUSH	BC
-	LD	BC,L__111
-	PUSH	BC
-	LD	BC,L__112
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
@@ -785,21 +775,21 @@ L_29:
 	ADD	IY,SP
 	LD	SP,IY
 ;  142	    drawLesson(3 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Idrott", "", "tejpe", "01:30", colorIdrott, textColorDark, "09:40", "11:10");
-	LD	BC,L__113
+	LD	BC,L__111
 	PUSH	BC
-	LD	BC,L__114
+	LD	BC,L__112
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,253
 	PUSH	BC
+	LD	BC,L__113
+	PUSH	BC
+	LD	BC,L__114
+	PUSH	BC
 	LD	BC,L__115
 	PUSH	BC
 	LD	BC,L__116
-	PUSH	BC
-	LD	BC,L__117
-	PUSH	BC
-	LD	BC,L__118
 	PUSH	BC
 	LD	BC,34
 	PUSH	BC
@@ -810,21 +800,21 @@ L_29:
 	ADD	IY,SP
 	LD	SP,IY
 ;  143	    drawLesson(3 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:35", "12:20");
-	LD	BC,L__119
+	LD	BC,L__117
 	PUSH	BC
-	LD	BC,L__120
+	LD	BC,L__118
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,224
 	PUSH	BC
+	LD	BC,L__119
+	PUSH	BC
+	LD	BC,L__120
+	PUSH	BC
 	LD	BC,L__121
 	PUSH	BC
 	LD	BC,L__122
-	PUSH	BC
-	LD	BC,L__123
-	PUSH	BC
-	LD	BC,L__124
 	PUSH	BC
 	LD	BC,68
 	PUSH	BC
@@ -833,30 +823,30 @@ L_29:
 	CALL	_drawLesson
 	LD	IY,30
 	ADD	IY,SP
-;  144	    if(weekB && !classB){
-	LD	A,(_weekB)
-	OR	A,A
-	LD	SP,IY
-	JR	Z,L_36
+;  144	    if(!classB && !weekB){
 	LD	A,(_classB)
 	OR	A,A
+	LD	SP,IY
 	JR	NZ,L_36
-;  145	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "12:20", "13:40");
+	LD	A,(_weekB)
+	OR	A,A
+	JR	NZ,L_36
+;  145	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "12:20", "13:40");
+	LD	BC,L__125
+	PUSH	BC
+	LD	BC,L__126
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	LD	BC,47
+	PUSH	BC
 	LD	BC,L__127
 	PUSH	BC
 	LD	BC,L__128
 	PUSH	BC
-	LD	BC,0
-	PUSH	BC
-	LD	BC,63
-	PUSH	BC
 	LD	BC,L__129
 	PUSH	BC
 	LD	BC,L__130
-	PUSH	BC
-	LD	BC,L__131
-	PUSH	BC
-	LD	BC,L__132
 	PUSH	BC
 	LD	BC,102
 	PUSH	BC
@@ -867,21 +857,21 @@ L_29:
 	ADD	IY,SP
 	LD	SP,IY
 ;  146	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "14:00", "15:30");
-	LD	BC,L__133
+	LD	BC,L__131
 	PUSH	BC
-	LD	BC,L__134
+	LD	BC,L__132
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,5
 	PUSH	BC
+	LD	BC,L__133
+	PUSH	BC
+	LD	BC,L__134
+	PUSH	BC
 	LD	BC,L__135
 	PUSH	BC
 	LD	BC,L__136
-	PUSH	BC
-	LD	BC,L__137
-	PUSH	BC
-	LD	BC,L__138
 	PUSH	BC
 	LD	BC,136
 	PUSH	BC
@@ -891,28 +881,31 @@ L_29:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  147	    } else if(!classB) {
+;  147	    } else if(!classB && weekB){
 	JR	L_37
 L_36:
 	LD	A,(_classB)
 	OR	A,A
 	JR	NZ,L_34
+	LD	A,(_weekB)
+	OR	A,A
+	JR	Z,L_34
 ;  148	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
-	LD	BC,L__140
+	LD	BC,L__139
 	PUSH	BC
-	LD	BC,L__141
+	LD	BC,L__140
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,5
+	PUSH	BC
+	LD	BC,L__141
 	PUSH	BC
 	LD	BC,L__142
 	PUSH	BC
 	LD	BC,L__143
 	PUSH	BC
 	LD	BC,L__144
-	PUSH	BC
-	LD	BC,L__145
 	PUSH	BC
 	LD	BC,102
 	PUSH	BC
@@ -922,22 +915,22 @@ L_36:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  149	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "14:00", "15:20");
-	LD	BC,L__146
+;  149	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "14:00", "15:20");
+	LD	BC,L__145
 	PUSH	BC
-	LD	BC,L__147
+	LD	BC,L__146
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
-	LD	BC,47
+	LD	BC,63
+	PUSH	BC
+	LD	BC,L__147
 	PUSH	BC
 	LD	BC,L__148
 	PUSH	BC
 	LD	BC,L__149
 	PUSH	BC
 	LD	BC,L__150
-	PUSH	BC
-	LD	BC,L__151
 	PUSH	BC
 	LD	BC,136
 	PUSH	BC
@@ -947,12 +940,15 @@ L_36:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  150	    } else if(weekB){
+;  150	    } else if(classB && !weekB){
 	JR	L_37
 L_34:
-	LD	A,(_weekB)
+	LD	A,(_classB)
 	OR	A,A
 	JR	Z,L_32
+	LD	A,(_weekB)
+	OR	A,A
+	JR	NZ,L_32
 ;  151	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
 	LD	BC,L__153
 	PUSH	BC
@@ -978,14 +974,14 @@ L_34:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  152	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "14:00", "15:20");
+;  152	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "14:00", "15:20");
 	LD	BC,L__159
 	PUSH	BC
 	LD	BC,L__160
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
-	LD	BC,63
+	LD	BC,47
 	PUSH	BC
 	LD	BC,L__161
 	PUSH	BC
@@ -1003,25 +999,31 @@ L_34:
 	LD	IY,30
 	ADD	IY,SP
 	LD	SP,IY
-;  153	    } else {
+;  153	    } else if(classB && weekB){
 	JR	L_37
 L_32:
-;  154	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "12:20", "13:40");
-	LD	BC,L__165
-	PUSH	BC
-	LD	BC,L__166
-	PUSH	BC
-	LD	BC,0
-	PUSH	BC
-	LD	BC,47
-	PUSH	BC
+	LD	A,(_classB)
+	OR	A,A
+	JR	Z,L_37
+	LD	A,(_weekB)
+	OR	A,A
+	JR	Z,L_37
+;  154	        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "12:20", "13:40");
 	LD	BC,L__167
 	PUSH	BC
 	LD	BC,L__168
 	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	LD	BC,63
+	PUSH	BC
 	LD	BC,L__169
 	PUSH	BC
 	LD	BC,L__170
+	PUSH	BC
+	LD	BC,L__171
+	PUSH	BC
+	LD	BC,L__172
 	PUSH	BC
 	LD	BC,102
 	PUSH	BC
@@ -1032,21 +1034,21 @@ L_32:
 	ADD	IY,SP
 	LD	SP,IY
 ;  155	        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "14:00", "15:30");
-	LD	BC,L__171
+	LD	BC,L__173
 	PUSH	BC
-	LD	BC,L__172
+	LD	BC,L__174
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,5
 	PUSH	BC
-	LD	BC,L__173
-	PUSH	BC
-	LD	BC,L__174
-	PUSH	BC
 	LD	BC,L__175
 	PUSH	BC
 	LD	BC,L__176
+	PUSH	BC
+	LD	BC,L__177
+	PUSH	BC
+	LD	BC,L__178
 	PUSH	BC
 	LD	BC,136
 	PUSH	BC
@@ -1059,21 +1061,21 @@ L_32:
 ;  156	    }
 L_37:
 ;  157	    drawLesson(3 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Resurstid", "", "", "01:00", colorResurstid, textColorLight, "15:30", "16:30");
-	LD	BC,L__177
+	LD	BC,L__179
 	PUSH	BC
-	LD	BC,L__178
+	LD	BC,L__180
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,104
 	PUSH	BC
-	LD	BC,L__179
-	PUSH	BC
-	LD	BC,L__180
-	PUSH	BC
 	LD	BC,L__181
 	PUSH	BC
 	LD	BC,L__182
+	PUSH	BC
+	LD	BC,L__183
+	PUSH	BC
+	LD	BC,L__184
 	PUSH	BC
 	LD	BC,170
 	PUSH	BC
@@ -1086,21 +1088,21 @@ L_37:
 ;  158	
 ;  159	    //Fredag
 ;  160	    drawLesson(4 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Kemi", "H331", "altla", "01:00", colorKemi, textColorDark, "09:50", "10:50");
-	LD	BC,L__183
+	LD	BC,L__185
 	PUSH	BC
-	LD	BC,L__184
+	LD	BC,L__186
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,63
 	PUSH	BC
-	LD	BC,L__185
-	PUSH	BC
-	LD	BC,L__186
-	PUSH	BC
 	LD	BC,L__187
 	PUSH	BC
 	LD	BC,L__188
+	PUSH	BC
+	LD	BC,L__189
+	PUSH	BC
+	LD	BC,L__190
 	PUSH	BC
 	LD	BC,34
 	PUSH	BC
@@ -1111,21 +1113,21 @@ L_37:
 	ADD	IY,SP
 	LD	SP,IY
 ;  161	    drawLesson(4 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:00", "11:45");
-	LD	BC,L__189
+	LD	BC,L__191
 	PUSH	BC
-	LD	BC,L__190
+	LD	BC,L__192
 	PUSH	BC
 	LD	BC,255
 	PUSH	BC
 	LD	BC,224
 	PUSH	BC
-	LD	BC,L__191
-	PUSH	BC
-	LD	BC,L__192
-	PUSH	BC
 	LD	BC,L__193
 	PUSH	BC
 	LD	BC,L__194
+	PUSH	BC
+	LD	BC,L__195
+	PUSH	BC
+	LD	BC,L__196
 	PUSH	BC
 	LD	BC,68
 	PUSH	BC
@@ -1136,21 +1138,21 @@ L_37:
 	ADD	IY,SP
 	LD	SP,IY
 ;  162	    drawLesson(4 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "01:20", colorFysik, textColorDark, "12:10", "13:30");
-	LD	BC,L__195
+	LD	BC,L__197
 	PUSH	BC
-	LD	BC,L__196
+	LD	BC,L__198
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,47
 	PUSH	BC
-	LD	BC,L__197
-	PUSH	BC
-	LD	BC,L__198
-	PUSH	BC
 	LD	BC,L__199
 	PUSH	BC
 	LD	BC,L__200
+	PUSH	BC
+	LD	BC,L__201
+	PUSH	BC
+	LD	BC,L__202
 	PUSH	BC
 	LD	BC,102
 	PUSH	BC
@@ -1161,21 +1163,21 @@ L_37:
 	ADD	IY,SP
 	LD	SP,IY
 ;  163	    drawLesson(4 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", "jormo", "01:00", colorEngelska, textColorDark, "13:40", "14:40");
-	LD	BC,L__201
+	LD	BC,L__203
 	PUSH	BC
-	LD	BC,L__202
+	LD	BC,L__204
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,230
 	PUSH	BC
-	LD	BC,L__203
-	PUSH	BC
-	LD	BC,L__204
-	PUSH	BC
 	LD	BC,L__205
 	PUSH	BC
 	LD	BC,L__206
+	PUSH	BC
+	LD	BC,L__207
+	PUSH	BC
+	LD	BC,L__208
 	PUSH	BC
 	LD	BC,136
 	PUSH	BC
@@ -1186,21 +1188,21 @@ L_37:
 	ADD	IY,SP
 	LD	SP,IY
 ;  164	    drawLesson(4 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Matte", "F203", "drada", "01:00", colorMatte, textColorDark, "14:50", "15:50");
-	LD	BC,L__207
+	LD	BC,L__209
 	PUSH	BC
-	LD	BC,L__208
+	LD	BC,L__210
 	PUSH	BC
 	LD	BC,0
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
-	LD	BC,L__209
-	PUSH	BC
-	LD	BC,L__210
-	PUSH	BC
 	LD	BC,L__211
 	PUSH	BC
 	LD	BC,L__212
+	PUSH	BC
+	LD	BC,L__213
+	PUSH	BC
+	LD	BC,L__214
 	PUSH	BC
 	LD	BC,170
 	PUSH	BC
@@ -1212,7 +1214,7 @@ L_37:
 	LD	SP,IY
 ;  165	    
 ;  166	    boot_GetDate(&day, &month, &year);
-	PEA	IX+-22
+	PEA	IX+-19
 	PEA	IX+-4
 	PEA	IX+-5
 	CALL	_boot_GetDate
@@ -1224,7 +1226,7 @@ L_37:
 	UEXT	HL
 	LD	L,A
 	PUSH	HL
-	LD	BC,L__213
+	LD	BC,L__215
 	PUSH	BC
 	LD	BC,(IX+-8)
 	PUSH	BC
@@ -1237,7 +1239,7 @@ L_37:
 	UEXT	HL
 	LD	L,A
 	PUSH	HL
-	LD	BC,L__214
+	LD	BC,L__216
 	PUSH	BC
 	LD	BC,(IX+-11)
 	PUSH	BC
@@ -1246,10 +1248,10 @@ L_37:
 	POP	BC
 	POP	BC
 ;  169	    sprintf(yearS, "%d", year);
-	LD	BC,(IX+-22)
+	LD	BC,(IX+-19)
 	CALL	__stoiu
 	PUSH	HL
-	LD	BC,L__215
+	LD	BC,L__217
 	PUSH	BC
 	LD	BC,(IX+-14)
 	PUSH	BC
@@ -1262,7 +1264,7 @@ L_37:
 	UEXT	HL
 	LD	L,A
 	PUSH	HL
-	LD	BC,L__216
+	LD	BC,L__218
 	PUSH	BC
 	LD	BC,(IX+-17)
 	PUSH	BC
@@ -1286,7 +1288,7 @@ L_37:
 	POP	BC
 	POP	BC
 ;  174	        strcat(dateMsg, "/");
-	LD	BC,L__218
+	LD	BC,L__220
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1302,7 +1304,7 @@ L_37:
 	POP	BC
 	POP	BC
 ;  176	        strcat(dateMsg, "-");
-	LD	BC,L__219
+	LD	BC,L__221
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1318,7 +1320,7 @@ L_37:
 	POP	BC
 	POP	BC
 ;  178	        strcat(dateMsg, ", W: ");
-	LD	BC,L__220
+	LD	BC,L__222
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1334,7 +1336,7 @@ L_37:
 	POP	BC
 	POP	BC
 ;  180	        strcat(dateMsg, " : ");
-	LD	BC,L__221
+	LD	BC,L__223
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1345,7 +1347,7 @@ L_37:
 	JR	L_42
 L_39:
 ;  182	        strcat(dateMsg, "Week ");
-	LD	BC,L__222
+	LD	BC,L__224
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1358,7 +1360,7 @@ L_42:
 	OR	A,A
 	JR	NZ,L_41
 ;  184	        strcat(dateMsg, "A");
-	LD	BC,L__224
+	LD	BC,L__226
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1369,7 +1371,7 @@ L_42:
 	JR	L_45
 L_41:
 ;  186	        strcat(dateMsg, "B");
-	LD	BC,L__225
+	LD	BC,L__227
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1382,7 +1384,7 @@ L_45:
 	OR	A,A
 	JR	NZ,L_44
 ;  188	        strcat(dateMsg, ", c: A");
-	LD	BC,L__227
+	LD	BC,L__229
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1393,7 +1395,7 @@ L_45:
 	JR	L_46
 L_44:
 ;  190	        strcat(dateMsg, ", c: B");
-	LD	BC,L__228
+	LD	BC,L__230
 	PUSH	BC
 	LD	BC,(IX+-3)
 	PUSH	BC
@@ -1475,15 +1477,14 @@ L_46:
 ;_getWeekNumber                      IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_boot_GetDate                       IMPORT  -----   function
-;_classB                             STATIC      1   variable
 ;_weekB                              STATIC      1   variable
+;_classB                             STATIC      1   variable
 ;_drawLesson                         IMPORT  -----   function
 ;_gfx_SetColor                       IMPORT  -----   function
 ;_gfx_FillScreen                     IMPORT  -----   function
 ;_memset                             IMPORT  -----   function
 ;_malloc                             IMPORT  -----   function
-;year                                 IX-22      2   variable
-;temp26                               IX-20      3   variable
+;year                                 IX-19      2   variable
 ;weekS                                IX-17      3   variable
 ;yearS                                IX-14      3   variable
 ;monthS                               IX-11      3   variable
@@ -1493,7 +1494,7 @@ L_46:
 ;dateMsg                               IX-3      3   variable
 
 
-; Stack Frame Size: 28 (bytes)
+; Stack Frame Size: 25 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
@@ -1692,183 +1693,180 @@ L__85:
 L__86:
 	DB	"Engelska"
 	DB	0
-L__88:
-	DB	"H341"
-	DB	0
-L__89:
-	DB	"F206"
-	DB	0
-L__90:
+L__87:
 	DB	"10:35"
 	DB	0
-L__91:
+L__88:
 	DB	"09:25"
 	DB	0
-L__92:
+L__89:
 	DB	"01:10"
 	DB	0
-L__93:
+L__90:
 	DB	"drada"
+	DB	0
+L__91:
+	DB	"H341"
+	DB	0
+L__92:
+	DB	"Matte"
+	DB	0
+L__93:
+	DB	"11:30"
 	DB	0
 L__94:
-	DB	"Matte"
-	DB	0
-L__95:
-	DB	"11:30"
-	DB	0
-L__96:
 	DB	"10:40"
 	DB	0
-L__97:
+L__95:
 	DB	"00:50"
 	DB	0
-L__98:
+L__96:
 	DB	"drada"
+	DB	0
+L__97:
+	DB	"F206"
+	DB	0
+L__98:
+	DB	"Fysik"
 	DB	0
 L__99:
-	DB	"F206"
-	DB	0
-L__100:
-	DB	"Fysik"
-	DB	0
-L__101:
 	DB	"12:15"
 	DB	0
-L__102:
+L__100:
 	DB	"11:30"
 	DB	0
-L__103:
+L__101:
 	DB	"00:45"
+	DB	0
+L__102:
+	DB	0
+L__103:
 	DB	0
 L__104:
+	DB	"Lunch"
 	DB	0
 L__105:
-	DB	0
-L__106:
-	DB	"Lunch"
-	DB	0
-L__107:
 	DB	"09:00"
 	DB	0
-L__108:
+L__106:
 	DB	"08:00"
 	DB	0
-L__109:
+L__107:
 	DB	"01:00"
 	DB	0
-L__110:
+L__108:
 	DB	"drada"
 	DB	0
-L__111:
+L__109:
 	DB	"F206"
 	DB	0
-L__112:
+L__110:
 	DB	"Matte"
 	DB	0
-L__113:
+L__111:
 	DB	"11:10"
 	DB	0
-L__114:
+L__112:
 	DB	"09:40"
 	DB	0
-L__115:
+L__113:
 	DB	"01:30"
 	DB	0
-L__116:
+L__114:
 	DB	"tejpe"
 	DB	0
-L__117:
+L__115:
 	DB	0
-L__118:
+L__116:
 	DB	"Idrott"
 	DB	0
-L__119:
+L__117:
 	DB	"12:20"
 	DB	0
-L__120:
+L__118:
 	DB	"11:35"
 	DB	0
-L__121:
+L__119:
 	DB	"00:45"
 	DB	0
+L__120:
+	DB	0
+L__121:
+	DB	0
 L__122:
-	DB	0
-L__123:
-	DB	0
-L__124:
 	DB	"Lunch"
 	DB	0
-L__127:
+L__125:
 	DB	"13:40"
 	DB	0
+L__126:
+	DB	"12:20"
+	DB	0
+L__127:
+	DB	"01:20"
+	DB	0
 L__128:
-	DB	"12:20"
-	DB	0
-L__129:
-	DB	"01:20"
-	DB	0
-L__130:
-	DB	"altla"
-	DB	0
-L__131:
-	DB	"H324La"
-	DB	0
-L__132:
-	DB	"Kemi"
-	DB	0
-L__133:
-	DB	"15:30"
-	DB	0
-L__134:
-	DB	"14:00"
-	DB	0
-L__135:
-	DB	"01:30"
-	DB	0
-L__136:
-	DB	"chuga"
-	DB	0
-L__137:
-	DB	"H341"
-	DB	0
-L__138:
-	DB	"Teknik"
-	DB	0
-L__140:
-	DB	"13:50"
-	DB	0
-L__141:
-	DB	"12:20"
-	DB	0
-L__142:
-	DB	"01:30"
-	DB	0
-L__143:
-	DB	"chuga"
-	DB	0
-L__144:
-	DB	"H341"
-	DB	0
-L__145:
-	DB	"Teknik"
-	DB	0
-L__146:
-	DB	"15:20"
-	DB	0
-L__147:
-	DB	"14:00"
-	DB	0
-L__148:
-	DB	"01:20"
-	DB	0
-L__149:
 	DB	"drada"
 	DB	0
-L__150:
+L__129:
 	DB	"F204La"
 	DB	0
-L__151:
+L__130:
 	DB	"Fysik"
+	DB	0
+L__131:
+	DB	"15:30"
+	DB	0
+L__132:
+	DB	"14:00"
+	DB	0
+L__133:
+	DB	"01:30"
+	DB	0
+L__134:
+	DB	"chuga"
+	DB	0
+L__135:
+	DB	"H341"
+	DB	0
+L__136:
+	DB	"Teknik"
+	DB	0
+L__139:
+	DB	"13:50"
+	DB	0
+L__140:
+	DB	"12:20"
+	DB	0
+L__141:
+	DB	"01:30"
+	DB	0
+L__142:
+	DB	"chuga"
+	DB	0
+L__143:
+	DB	"H341"
+	DB	0
+L__144:
+	DB	"Teknik"
+	DB	0
+L__145:
+	DB	"15:20"
+	DB	0
+L__146:
+	DB	"14:00"
+	DB	0
+L__147:
+	DB	"01:20"
+	DB	0
+L__148:
+	DB	"altla"
+	DB	0
+L__149:
+	DB	"H324La"
+	DB	0
+L__150:
+	DB	"Kemi"
 	DB	0
 L__153:
 	DB	"13:50"
@@ -1898,159 +1896,153 @@ L__161:
 	DB	"01:20"
 	DB	0
 L__162:
-	DB	"altla"
+	DB	"drada"
 	DB	0
 L__163:
-	DB	"H324La"
-	DB	0
-L__164:
-	DB	"Kemi"
-	DB	0
-L__165:
-	DB	"13:40"
-	DB	0
-L__166:
-	DB	"12:20"
-	DB	0
-L__167:
-	DB	"01:20"
-	DB	0
-L__168:
-	DB	"drada"
-	DB	0
-L__169:
 	DB	"F204La"
 	DB	0
-L__170:
+L__164:
 	DB	"Fysik"
 	DB	0
-L__171:
-	DB	"15:30"
-	DB	0
-L__172:
-	DB	"14:00"
-	DB	0
-L__173:
-	DB	"01:30"
-	DB	0
-L__174:
-	DB	"chuga"
-	DB	0
-L__175:
-	DB	"H341"
-	DB	0
-L__176:
-	DB	"Teknik"
-	DB	0
-L__177:
-	DB	"16:30"
-	DB	0
-L__178:
-	DB	"15:30"
-	DB	0
-L__179:
-	DB	"01:00"
-	DB	0
-L__180:
-	DB	0
-L__181:
-	DB	0
-L__182:
-	DB	"Resurstid"
-	DB	0
-L__183:
-	DB	"10:50"
-	DB	0
-L__184:
-	DB	"09:50"
-	DB	0
-L__185:
-	DB	"01:00"
-	DB	0
-L__186:
-	DB	"altla"
-	DB	0
-L__187:
-	DB	"H331"
-	DB	0
-L__188:
-	DB	"Kemi"
-	DB	0
-L__189:
-	DB	"11:45"
-	DB	0
-L__190:
-	DB	"11:00"
-	DB	0
-L__191:
-	DB	"00:45"
-	DB	0
-L__192:
-	DB	0
-L__193:
-	DB	0
-L__194:
-	DB	"Lunch"
-	DB	0
-L__195:
-	DB	"13:30"
-	DB	0
-L__196:
-	DB	"12:10"
-	DB	0
-L__197:
-	DB	"01:20"
-	DB	0
-L__198:
-	DB	"drada"
-	DB	0
-L__199:
-	DB	"F206"
-	DB	0
-L__200:
-	DB	"Fysik"
-	DB	0
-L__201:
-	DB	"14:40"
-	DB	0
-L__202:
+L__167:
 	DB	"13:40"
 	DB	0
-L__203:
+L__168:
+	DB	"12:20"
+	DB	0
+L__169:
+	DB	"01:20"
+	DB	0
+L__170:
+	DB	"altla"
+	DB	0
+L__171:
+	DB	"H324La"
+	DB	0
+L__172:
+	DB	"Kemi"
+	DB	0
+L__173:
+	DB	"15:30"
+	DB	0
+L__174:
+	DB	"14:00"
+	DB	0
+L__175:
+	DB	"01:30"
+	DB	0
+L__176:
+	DB	"chuga"
+	DB	0
+L__177:
+	DB	"H341"
+	DB	0
+L__178:
+	DB	"Teknik"
+	DB	0
+L__179:
+	DB	"16:30"
+	DB	0
+L__180:
+	DB	"15:30"
+	DB	0
+L__181:
 	DB	"01:00"
 	DB	0
-L__204:
-	DB	"jormo"
+L__182:
 	DB	0
-L__205:
-	DB	"B107"
+L__183:
 	DB	0
-L__206:
-	DB	"Engelska"
+L__184:
+	DB	"Resurstid"
 	DB	0
-L__207:
-	DB	"15:50"
+L__185:
+	DB	"10:50"
 	DB	0
-L__208:
-	DB	"14:50"
+L__186:
+	DB	"09:50"
 	DB	0
-L__209:
+L__187:
 	DB	"01:00"
 	DB	0
-L__210:
+L__188:
+	DB	"altla"
+	DB	0
+L__189:
+	DB	"H331"
+	DB	0
+L__190:
+	DB	"Kemi"
+	DB	0
+L__191:
+	DB	"11:45"
+	DB	0
+L__192:
+	DB	"11:00"
+	DB	0
+L__193:
+	DB	"00:45"
+	DB	0
+L__194:
+	DB	0
+L__195:
+	DB	0
+L__196:
+	DB	"Lunch"
+	DB	0
+L__197:
+	DB	"13:30"
+	DB	0
+L__198:
+	DB	"12:10"
+	DB	0
+L__199:
+	DB	"01:20"
+	DB	0
+L__200:
 	DB	"drada"
 	DB	0
+L__201:
+	DB	"F206"
+	DB	0
+L__202:
+	DB	"Fysik"
+	DB	0
+L__203:
+	DB	"14:40"
+	DB	0
+L__204:
+	DB	"13:40"
+	DB	0
+L__205:
+	DB	"01:00"
+	DB	0
+L__206:
+	DB	"jormo"
+	DB	0
+L__207:
+	DB	"B107"
+	DB	0
+L__208:
+	DB	"Engelska"
+	DB	0
+L__209:
+	DB	"15:50"
+	DB	0
+L__210:
+	DB	"14:50"
+	DB	0
 L__211:
-	DB	"F203"
+	DB	"01:00"
 	DB	0
 L__212:
-	DB	"Matte"
+	DB	"drada"
 	DB	0
 L__213:
-	DB	"%d"
+	DB	"F203"
 	DB	0
 L__214:
-	DB	"%d"
+	DB	"Matte"
 	DB	0
 L__215:
 	DB	"%d"
@@ -2058,31 +2050,37 @@ L__215:
 L__216:
 	DB	"%d"
 	DB	0
-L__218:
-	DB	"/"
+L__217:
+	DB	"%d"
 	DB	0
-L__219:
-	DB	"-"
+L__218:
+	DB	"%d"
 	DB	0
 L__220:
-	DB	", W: "
+	DB	"/"
 	DB	0
 L__221:
-	DB	" : "
+	DB	"-"
 	DB	0
 L__222:
-	DB	"Week "
+	DB	", W: "
+	DB	0
+L__223:
+	DB	" : "
 	DB	0
 L__224:
+	DB	"Week "
+	DB	0
+L__226:
 	DB	"A"
 	DB	0
-L__225:
+L__227:
 	DB	"B"
 	DB	0
-L__227:
+L__229:
 	DB	", c: A"
 	DB	0
-L__228:
+L__230:
 	DB	", c: B"
 	DB	0
 	SEGMENT CODE
@@ -2101,7 +2099,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
-	LD	BC,L__230
+	LD	BC,L__232
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2112,7 +2110,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__231
+	LD	BC,L__233
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2123,7 +2121,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__232
+	LD	BC,L__234
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2134,7 +2132,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__233
+	LD	BC,L__235
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2145,7 +2143,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__234
+	LD	BC,L__236
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2156,7 +2154,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__235
+	LD	BC,L__237
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2168,7 +2166,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__236
+	LD	BC,L__238
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2179,7 +2177,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__237
+	LD	BC,L__239
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2190,7 +2188,7 @@ _drawHelp:
 	PUSH	BC
 	LD	BC,10
 	PUSH	BC
-	LD	BC,L__238
+	LD	BC,L__240
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
@@ -2212,31 +2210,31 @@ _drawHelp:
 
 
 	SEGMENT STRSECT
-L__230:
+L__232:
 	DB	"Button Help"
 	DB	0
-L__231:
+L__233:
 	DB	"enter - Quit"
 	DB	0
-L__232:
+L__234:
 	DB	"/\\ , \\/ , 2nd - Swap Display mode"
 	DB	0
-L__233:
+L__235:
 	DB	"< , > , alpha - Swap Timetable (A/B)"
 	DB	0
-L__234:
+L__236:
 	DB	"clear - Swap Class (A/B)"
 	DB	0
-L__235:
+L__237:
 	DB	"I - Show this page"
 	DB	0
-L__236:
+L__238:
 	DB	"If week is 101, check that the"
 	DB	0
-L__237:
+L__239:
 	DB	"date is correct. If not, quit and enter"
 	DB	0
-L__238:
+L__240:
 	DB	"the correct date at mode > SET CLOCK"
 	DB	0
 	SEGMENT CODE
@@ -2307,7 +2305,7 @@ _drawLesson:
 ;  224	    switch (lessonInfo){
 	LD	HL,(_lessonInfo)
 	CALL	__seqcase
-L__240:
+L__242:
 	DW	3
 	DW	0
 	DB	0
@@ -2517,7 +2515,7 @@ _nextMode:
 ;  241	    switch (currentLessonInfo){
 	LD	HL,(IX+6)
 	CALL	__case8
-L__242:
+L__244:
 	DW	2
 	DB	0
 	DW24	L_53	
@@ -2625,7 +2623,7 @@ _getWeekNumber:
 	UEXT	HL
 	LD	L,A
 	CALL	__seqcase
-L__249:
+L__251:
 	DW	12
 	DW	1
 	DB	0
@@ -2786,7 +2784,7 @@ _getWeekB:
 	UEXT	HL
 	LD	L,A
 	CALL	__seqcase
-L__252:
+L__254:
 	DW	24
 	DW	1
 	DB	0

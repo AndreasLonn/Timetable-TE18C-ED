@@ -133,7 +133,7 @@ void drawLessons(void){
     drawLesson(1 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Engelska", "B107", "jormo", "01:20", colorEngelska, textColorDark, "12:55", "14:15");
 
     //Onsdag
-    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", !weekB ? "H341" : "F206", "drada", "01:10", colorMatte, textColorDark, "09:25", "10:35");
+    drawLesson(2 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Matte", "H341", "drada", "01:10", colorMatte, textColorDark, "09:25", "10:35");
     drawLesson(2 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Fysik", "F206", "drada", "00:50", colorFysik, textColorDark, "10:40", "11:30");
     drawLesson(2 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:30", "12:15");
 
@@ -141,17 +141,17 @@ void drawLessons(void){
     drawLesson(3 * lessonWidth, 0 * (lessonHeight + lessonHeightMargin), "Matte", "F206", "drada", "01:00", colorMatte, textColorDark, "08:00", "09:00");
     drawLesson(3 * lessonWidth, 1 * (lessonHeight + lessonHeightMargin), "Idrott", "", "tejpe", "01:30", colorIdrott, textColorDark, "09:40", "11:10");
     drawLesson(3 * lessonWidth, 2 * (lessonHeight + lessonHeightMargin), "Lunch", "", "", "00:45", colorLunch, textColorLight, "11:35", "12:20");
-    if(weekB && !classB){
-        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "12:20", "13:40");
+    if(!classB && !weekB){
+        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "12:20", "13:40");
         drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "14:00", "15:30");
-    } else if(!classB) {
-        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
-        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "14:00", "15:20");
-    } else if(weekB){
+    } else if(!classB && weekB){
         drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
         drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "14:00", "15:20");
-    } else {
-        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "12:20", "13:40");
+    } else if(classB && !weekB){
+        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "12:20", "13:50");
+        drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Fysik", "F204La", "drada", "01:20", colorFysik, textColorDark, "14:00", "15:20");
+    } else if(classB && weekB){
+        drawLesson(3 * lessonWidth, 3 * (lessonHeight + lessonHeightMargin), "Kemi", "H324La", "altla", "01:20", colorKemi, textColorDark, "12:20", "13:40");
         drawLesson(3 * lessonWidth, 4 * (lessonHeight + lessonHeightMargin), "Teknik", "H341", "chuga", "01:30", colorTeknik, textColorLight, "14:00", "15:30");
     }
     drawLesson(3 * lessonWidth, 5 * (lessonHeight + lessonHeightMargin), "Resurstid", "", "", "01:00", colorResurstid, textColorLight, "15:30", "16:30");

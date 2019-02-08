@@ -8,10 +8,10 @@ libs     D1A8DA D1A935            5Bh
 startup  D1A935 D1A970            3Bh
 cleanup  D1A970 D1A984            14h
 exit     D1A984 D1A98A             6h
-code     D1A98A D1BC18          128Eh
-data     D1BC18 D1BC40            28h
-strsect  D1BC40 D1C1AC           56Ch
-text     D1C1AC D1C1AC             0h
+code     D1A98A D1BC26          129Ch
+data     D1BC26 D1BC4E            28h
+strsect  D1BC4E D1C1B5           567h
+text     D1C1B5 D1C1B5             0h
 
 Label                          Value
 ----------------------------   ------
@@ -23,29 +23,29 @@ _exit                        = D1A986
 __exit                       = D1A962
 __exitsp                     = D1A962
 __errsp                      = D1A962
-_getWeekB                    = D1B94C
-_getWeekNumber               = D1B846
-_nextMode                    = D1B7D6
-_drawLesson                  = D1B606
-_drawHelp                    = D1B52F
+_getWeekB                    = D1B95A
+_getWeekNumber               = D1B854
+_nextMode                    = D1B7E4
+_drawLesson                  = D1B614
+_drawHelp                    = D1B53D
 _drawLessons                 = D1AB1A
 _main                        = D1A98A
 _showingHelp                 = D031F8
 _classB                      = D031F7
 _weekB                       = D031F6
-_lessonInfo                  = D1BC3A
+_lessonInfo                  = D1BC48
 __case8                      = 000124
-__frameset                   = D1B9F7
-_free                        = D1BA05
-__icmpzero                   = D1BB03
+__frameset                   = D1BA05
+_free                        = D1BA13
+__icmpzero                   = D1BB11
 __idivs                      = 00013C
 __irems                      = 00016C
 __ishru_b                    = 000184
 __ishru_b                    = 000188
-_malloc                      = D1BB39
+_malloc                      = D1BB47
 __alloc_base                 = D031F9
-_memset                      = D1BBE1
-__s_sbrk                     = D1BBF8
+_memset                      = D1BBEF
+__s_sbrk                     = D1BC06
 __seqcase                    = 000210
 _sprintf                     = 0000BC
 __stoi                       = 000260
